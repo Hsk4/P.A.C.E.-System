@@ -36,7 +36,13 @@ class _TasksScreenState extends State<TasksScreen> {
         onPressed: () => _showAddTask(context),
         backgroundColor: AppTheme.accent,
         icon: const Icon(Icons.add, color: Colors.white),
-        label: Text('Add Task', style: GoogleFonts.spaceGrotesk(color: Colors.white, fontWeight: FontWeight.w600)),
+        label: Text(
+          'Add Task',
+          style: GoogleFonts.spaceGrotesk(
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ),
     );
   }
@@ -60,11 +66,26 @@ class _TasksScreenState extends State<TasksScreen> {
       padding: const EdgeInsets.fromLTRB(24, 16, 24, 0),
       child: Row(
         children: [
-          _FilterChip(label: 'All', value: 'all', current: _filter, onTap: (v) => setState(() => _filter = v)),
+          _FilterChip(
+            label: 'All',
+            value: 'all',
+            current: _filter,
+            onTap: (v) => setState(() => _filter = v),
+          ),
           const SizedBox(width: 8),
-          _FilterChip(label: 'Pending', value: 'pending', current: _filter, onTap: (v) => setState(() => _filter = v)),
+          _FilterChip(
+            label: 'Pending',
+            value: 'pending',
+            current: _filter,
+            onTap: (v) => setState(() => _filter = v),
+          ),
           const SizedBox(width: 8),
-          _FilterChip(label: 'Done', value: 'completed', current: _filter, onTap: (v) => setState(() => _filter = v)),
+          _FilterChip(
+            label: 'Done',
+            value: 'completed',
+            current: _filter,
+            onTap: (v) => setState(() => _filter = v),
+          ),
         ],
       ),
     );
@@ -103,7 +124,10 @@ class _TasksScreenState extends State<TasksScreen> {
                 const SizedBox(height: 12),
                 Text(
                   'No tasks here',
-                  style: GoogleFonts.spaceGrotesk(color: AppTheme.textSecondary, fontSize: 15),
+                  style: GoogleFonts.spaceGrotesk(
+                    color: AppTheme.textSecondary,
+                    fontSize: 15,
+                  ),
                 ),
               ],
             ),
@@ -156,7 +180,9 @@ class _FilterChip extends StatelessWidget {
         decoration: BoxDecoration(
           color: isActive ? AppTheme.accent : AppTheme.surface,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: isActive ? AppTheme.accent : AppTheme.border),
+          border: Border.all(
+            color: isActive ? AppTheme.accent : AppTheme.border,
+          ),
         ),
         child: Text(
           label,
@@ -198,66 +224,128 @@ class _AddTaskSheetState extends State<_AddTaskSheet> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(24, 24, 24, MediaQuery.of(context).viewInsets.bottom + 24),
+      padding: EdgeInsets.fromLTRB(
+        24,
+        24,
+        24,
+        MediaQuery.of(context).viewInsets.bottom + 24,
+      ),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('New Task', style: GoogleFonts.spaceGrotesk(fontSize: 20, fontWeight: FontWeight.w700, color: AppTheme.textPrimary)),
+            Text(
+              'New Task',
+              style: GoogleFonts.spaceGrotesk(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                color: AppTheme.textPrimary,
+              ),
+            ),
             const SizedBox(height: 20),
             TextField(
               controller: _titleController,
               style: GoogleFonts.spaceGrotesk(color: AppTheme.textPrimary),
-              decoration: const InputDecoration(labelText: 'Task title *', hintText: 'What do you need to do?'),
+              decoration: const InputDecoration(
+                labelText: 'Task title *',
+                hintText: 'What do you need to do?',
+              ),
               autofocus: true,
             ),
             const SizedBox(height: 12),
             TextField(
               controller: _descController,
               style: GoogleFonts.spaceGrotesk(color: AppTheme.textPrimary),
-              decoration: const InputDecoration(labelText: 'Description (optional)'),
+              decoration: const InputDecoration(
+                labelText: 'Description (optional)',
+              ),
               maxLines: 2,
             ),
             const SizedBox(height: 16),
-            Text('Category', style: GoogleFonts.spaceGrotesk(fontSize: 13, color: AppTheme.textSecondary)),
+            Text(
+              'Category',
+              style: GoogleFonts.spaceGrotesk(
+                fontSize: 13,
+                color: AppTheme.textSecondary,
+              ),
+            ),
             const SizedBox(height: 8),
             Row(
-              children: _categories.map((cat) {
-                final isActive = _category == cat.$1;
-                return Expanded(
-                  child: GestureDetector(
-                    onTap: () => setState(() => _category = cat.$1),
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
-                      margin: const EdgeInsets.only(right: 6),
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      decoration: BoxDecoration(
-                        color: isActive ? cat.$3.withOpacity(0.2) : AppTheme.surfaceElevated,
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: isActive ? cat.$3 : AppTheme.border),
+              children:
+                  _categories.map((cat) {
+                    final isActive = _category == cat.$1;
+                    return Expanded(
+                      child: GestureDetector(
+                        onTap: () => setState(() => _category = cat.$1),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          margin: const EdgeInsets.only(right: 6),
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          decoration: BoxDecoration(
+                            color:
+                                isActive
+                                    ? cat.$3.withOpacity(0.2)
+                                    : AppTheme.surfaceElevated,
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              color: isActive ? cat.$3 : AppTheme.border,
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              Text(
+                                cat.$2,
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                              Text(
+                                cat.$1,
+                                style: GoogleFonts.spaceGrotesk(
+                                  fontSize: 10,
+                                  color: isActive ? cat.$3 : AppTheme.textMuted,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                      child: Column(
-                        children: [
-                          Text(cat.$2, style: const TextStyle(fontSize: 16)),
-                          Text(cat.$1, style: GoogleFonts.spaceGrotesk(fontSize: 10, color: isActive ? cat.$3 : AppTheme.textMuted)),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              }).toList(),
+                    );
+                  }).toList(),
             ),
             const SizedBox(height: 16),
-            Text('Priority', style: GoogleFonts.spaceGrotesk(fontSize: 13, color: AppTheme.textSecondary)),
+            Text(
+              'Priority',
+              style: GoogleFonts.spaceGrotesk(
+                fontSize: 13,
+                color: AppTheme.textSecondary,
+              ),
+            ),
             const SizedBox(height: 8),
             Row(
               children: [
-                _PriorityBtn(label: 'Low', value: 1, current: _priority, color: AppTheme.success, onTap: (v) => setState(() => _priority = v)),
+                _PriorityBtn(
+                  label: 'Low',
+                  value: 1,
+                  current: _priority,
+                  color: AppTheme.success,
+                  onTap: (v) => setState(() => _priority = v),
+                ),
                 const SizedBox(width: 8),
-                _PriorityBtn(label: 'Medium', value: 2, current: _priority, color: AppTheme.warning, onTap: (v) => setState(() => _priority = v)),
+                _PriorityBtn(
+                  label: 'Medium',
+                  value: 2,
+                  current: _priority,
+                  color: AppTheme.warning,
+                  onTap: (v) => setState(() => _priority = v),
+                ),
                 const SizedBox(width: 8),
-                _PriorityBtn(label: 'High', value: 3, current: _priority, color: AppTheme.danger, onTap: (v) => setState(() => _priority = v)),
+                _PriorityBtn(
+                  label: 'High',
+                  value: 3,
+                  current: _priority,
+                  color: AppTheme.danger,
+                  onTap: (v) => setState(() => _priority = v),
+                ),
               ],
             ),
             const SizedBox(height: 16),
@@ -272,22 +360,35 @@ class _AddTaskSheetState extends State<_AddTaskSheet> {
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.calendar_today_outlined, size: 18, color: AppTheme.textSecondary),
+                    Icon(
+                      Icons.calendar_today_outlined,
+                      size: 18,
+                      color: AppTheme.textSecondary,
+                    ),
                     const SizedBox(width: 10),
                     Text(
                       _scheduledAt != null
-                          ? DateFormat('MMM d, yyyy  h:mm a').format(_scheduledAt!)
+                          ? DateFormat(
+                            'MMM d, yyyy  h:mm a',
+                          ).format(_scheduledAt!)
                           : 'Set date & time',
                       style: GoogleFonts.spaceGrotesk(
                         fontSize: 14,
-                        color: _scheduledAt != null ? AppTheme.textPrimary : AppTheme.textMuted,
+                        color:
+                            _scheduledAt != null
+                                ? AppTheme.textPrimary
+                                : AppTheme.textMuted,
                       ),
                     ),
                     const Spacer(),
                     if (_scheduledAt != null)
                       GestureDetector(
                         onTap: () => setState(() => _scheduledAt = null),
-                        child: const Icon(Icons.close, size: 16, color: AppTheme.textMuted),
+                        child: const Icon(
+                          Icons.close,
+                          size: 16,
+                          color: AppTheme.textMuted,
+                        ),
                       ),
                   ],
                 ),
@@ -297,8 +398,17 @@ class _AddTaskSheetState extends State<_AddTaskSheet> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Enable notification', style: GoogleFonts.spaceGrotesk(fontSize: 14, color: AppTheme.textSecondary)),
-                Switch(value: _notificationEnabled, onChanged: (v) => setState(() => _notificationEnabled = v)),
+                Text(
+                  'Enable notification',
+                  style: GoogleFonts.spaceGrotesk(
+                    fontSize: 14,
+                    color: AppTheme.textSecondary,
+                  ),
+                ),
+                Switch(
+                  value: _notificationEnabled,
+                  onChanged: (v) => setState(() => _notificationEnabled = v),
+                ),
               ],
             ),
             const SizedBox(height: 20),
@@ -321,27 +431,35 @@ class _AddTaskSheetState extends State<_AddTaskSheet> {
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(const Duration(days: 365)),
-      builder: (ctx, child) => Theme(
-        data: ThemeData.dark().copyWith(
-          colorScheme: const ColorScheme.dark(primary: AppTheme.accent),
-        ),
-        child: child!,
-      ),
+      builder:
+          (ctx, child) => Theme(
+            data: ThemeData.dark().copyWith(
+              colorScheme: const ColorScheme.dark(primary: AppTheme.accent),
+            ),
+            child: child!,
+          ),
     );
     if (date == null || !mounted) return;
     final time = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
-      builder: (ctx, child) => Theme(
-        data: ThemeData.dark().copyWith(
-          colorScheme: const ColorScheme.dark(primary: AppTheme.accent),
-        ),
-        child: child!,
-      ),
+      builder:
+          (ctx, child) => Theme(
+            data: ThemeData.dark().copyWith(
+              colorScheme: const ColorScheme.dark(primary: AppTheme.accent),
+            ),
+            child: child!,
+          ),
     );
     if (time == null || !mounted) return;
     setState(() {
-      _scheduledAt = DateTime(date.year, date.month, date.day, time.hour, time.minute);
+      _scheduledAt = DateTime(
+        date.year,
+        date.month,
+        date.day,
+        time.hour,
+        time.minute,
+      );
     });
   }
 
@@ -349,7 +467,10 @@ class _AddTaskSheetState extends State<_AddTaskSheet> {
     if (_titleController.text.trim().isEmpty) return;
     context.read<TaskProvider>().addTask(
       title: _titleController.text.trim(),
-      description: _descController.text.trim().isEmpty ? null : _descController.text.trim(),
+      description:
+          _descController.text.trim().isEmpty
+              ? null
+              : _descController.text.trim(),
       scheduledAt: _scheduledAt,
       category: _category,
       priority: _priority,
@@ -376,8 +497,11 @@ class _PriorityBtn extends StatelessWidget {
   final ValueChanged<int> onTap;
 
   const _PriorityBtn({
-    required this.label, required this.value, required this.current,
-    required this.color, required this.onTap,
+    required this.label,
+    required this.value,
+    required this.current,
+    required this.color,
+    required this.onTap,
   });
 
   @override
@@ -395,11 +519,14 @@ class _PriorityBtn extends StatelessWidget {
             border: Border.all(color: isActive ? color : AppTheme.border),
           ),
           child: Center(
-            child: Text(label, style: GoogleFonts.spaceGrotesk(
-              fontSize: 13,
-              fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
-              color: isActive ? color : AppTheme.textSecondary,
-            )),
+            child: Text(
+              label,
+              style: GoogleFonts.spaceGrotesk(
+                fontSize: 13,
+                fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
+                color: isActive ? color : AppTheme.textSecondary,
+              ),
+            ),
           ),
         ),
       ),

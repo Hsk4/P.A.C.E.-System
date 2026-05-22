@@ -39,31 +39,42 @@ class TaskTile extends StatelessWidget {
             color: AppTheme.surface,
             borderRadius: BorderRadius.circular(14),
             border: Border.all(
-              color: task.isCompleted
-                  ? AppTheme.border
-                  : _priorityColor(task.priority).withOpacity(0.25),
+              color:
+                  task.isCompleted
+                      ? AppTheme.border
+                      : _priorityColor(task.priority).withOpacity(0.25),
             ),
           ),
           child: Row(
             children: [
               // Checkbox
               GestureDetector(
-                onTap: () => context.read<TaskProvider>().toggleComplete(task.id),
+                onTap:
+                    () => context.read<TaskProvider>().toggleComplete(task.id),
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
                   width: 22,
                   height: 22,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: task.isCompleted ? AppTheme.success : Colors.transparent,
+                    color:
+                        task.isCompleted
+                            ? AppTheme.success
+                            : Colors.transparent,
                     border: Border.all(
-                      color: task.isCompleted ? AppTheme.success : AppTheme.border,
+                      color:
+                          task.isCompleted ? AppTheme.success : AppTheme.border,
                       width: 2,
                     ),
                   ),
-                  child: task.isCompleted
-                      ? const Icon(Icons.check, size: 13, color: Colors.white)
-                      : null,
+                  child:
+                      task.isCompleted
+                          ? const Icon(
+                            Icons.check,
+                            size: 13,
+                            color: Colors.white,
+                          )
+                          : null,
                 ),
               ),
               const SizedBox(width: 12),
@@ -77,12 +88,19 @@ class TaskTile extends StatelessWidget {
                       style: GoogleFonts.spaceGrotesk(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: task.isCompleted ? AppTheme.textMuted : AppTheme.textPrimary,
-                        decoration: task.isCompleted ? TextDecoration.lineThrough : null,
+                        color:
+                            task.isCompleted
+                                ? AppTheme.textMuted
+                                : AppTheme.textPrimary,
+                        decoration:
+                            task.isCompleted
+                                ? TextDecoration.lineThrough
+                                : null,
                         decorationColor: AppTheme.textMuted,
                       ),
                     ),
-                    if (task.description != null && task.description!.isNotEmpty) ...[
+                    if (task.description != null &&
+                        task.description!.isNotEmpty) ...[
                       const SizedBox(height: 2),
                       Text(
                         task.description!,
@@ -98,10 +116,16 @@ class TaskTile extends StatelessWidget {
                       const SizedBox(height: 4),
                       Row(
                         children: [
-                          Icon(Icons.schedule_outlined, size: 11, color: AppTheme.textMuted),
+                          Icon(
+                            Icons.schedule_outlined,
+                            size: 11,
+                            color: AppTheme.textMuted,
+                          ),
                           const SizedBox(width: 3),
                           Text(
-                            DateFormat('MMM d, h:mm a').format(task.scheduledAt!),
+                            DateFormat(
+                              'MMM d, h:mm a',
+                            ).format(task.scheduledAt!),
                             style: GoogleFonts.spaceGrotesk(
                               fontSize: 11,
                               color: AppTheme.textMuted,
@@ -132,34 +156,48 @@ class TaskTile extends StatelessWidget {
 
   Color _priorityColor(int priority) {
     switch (priority) {
-      case 3: return AppTheme.danger;
-      case 2: return AppTheme.warning;
-      default: return AppTheme.success;
+      case 3:
+        return AppTheme.danger;
+      case 2:
+        return AppTheme.warning;
+      default:
+        return AppTheme.success;
     }
   }
 
   Future<bool?> _confirmDelete(BuildContext context) {
     return showDialog<bool>(
       context: context,
-      builder: (ctx) => AlertDialog(
-        backgroundColor: AppTheme.surface,
-        title: Text('Delete task?',
-            style: GoogleFonts.spaceGrotesk(color: AppTheme.textPrimary)),
-        content: Text('This cannot be undone.',
-            style: GoogleFonts.spaceGrotesk(color: AppTheme.textSecondary)),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, false),
-            child: Text('Cancel',
-                style: GoogleFonts.spaceGrotesk(color: AppTheme.textSecondary)),
+      builder:
+          (ctx) => AlertDialog(
+            backgroundColor: AppTheme.surface,
+            title: Text(
+              'Delete task?',
+              style: GoogleFonts.spaceGrotesk(color: AppTheme.textPrimary),
+            ),
+            content: Text(
+              'This cannot be undone.',
+              style: GoogleFonts.spaceGrotesk(color: AppTheme.textSecondary),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(ctx, false),
+                child: Text(
+                  'Cancel',
+                  style: GoogleFonts.spaceGrotesk(
+                    color: AppTheme.textSecondary,
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(ctx, true),
+                child: Text(
+                  'Delete',
+                  style: GoogleFonts.spaceGrotesk(color: AppTheme.danger),
+                ),
+              ),
+            ],
           ),
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, true),
-            child: Text('Delete',
-                style: GoogleFonts.spaceGrotesk(color: AppTheme.danger)),
-          ),
-        ],
-      ),
     );
   }
 
@@ -170,37 +208,47 @@ class TaskTile extends StatelessWidget {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (ctx) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              leading: Icon(
-                task.isCompleted ? Icons.radio_button_unchecked : Icons.check_circle_outline,
-                color: AppTheme.success,
-              ),
-              title: Text(
-                task.isCompleted ? 'Mark as pending' : 'Mark as complete',
-                style: GoogleFonts.spaceGrotesk(color: AppTheme.textPrimary),
-              ),
-              onTap: () {
-                context.read<TaskProvider>().toggleComplete(task.id);
-                Navigator.pop(ctx);
-              },
+      builder:
+          (ctx) => Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  leading: Icon(
+                    task.isCompleted
+                        ? Icons.radio_button_unchecked
+                        : Icons.check_circle_outline,
+                    color: AppTheme.success,
+                  ),
+                  title: Text(
+                    task.isCompleted ? 'Mark as pending' : 'Mark as complete',
+                    style: GoogleFonts.spaceGrotesk(
+                      color: AppTheme.textPrimary,
+                    ),
+                  ),
+                  onTap: () {
+                    context.read<TaskProvider>().toggleComplete(task.id);
+                    Navigator.pop(ctx);
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(
+                    Icons.delete_outline,
+                    color: AppTheme.danger,
+                  ),
+                  title: Text(
+                    'Delete task',
+                    style: GoogleFonts.spaceGrotesk(color: AppTheme.danger),
+                  ),
+                  onTap: () {
+                    context.read<TaskProvider>().deleteTask(task.id);
+                    Navigator.pop(ctx);
+                  },
+                ),
+              ],
             ),
-            ListTile(
-              leading: const Icon(Icons.delete_outline, color: AppTheme.danger),
-              title: Text('Delete task',
-                  style: GoogleFonts.spaceGrotesk(color: AppTheme.danger)),
-              onTap: () {
-                context.read<TaskProvider>().deleteTask(task.id);
-                Navigator.pop(ctx);
-              },
-            ),
-          ],
-        ),
-      ),
+          ),
     );
   }
 }
@@ -212,10 +260,10 @@ class _CategoryBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final (emoji, color) = switch (category) {
-      'work'     => ('💼', AppTheme.info),
-      'health'   => ('💪', AppTheme.success),
+      'work' => ('💼', AppTheme.info),
+      'health' => ('💪', AppTheme.success),
       'learning' => ('📚', AppTheme.warning),
-      _          => ('🧍', AppTheme.accent),
+      _ => ('🧍', AppTheme.accent),
     };
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
@@ -255,9 +303,14 @@ class _PriorityDot extends StatelessWidget {
           decoration: BoxDecoration(shape: BoxShape.circle, color: color),
         ),
         const SizedBox(width: 3),
-        Text(label,
-            style: GoogleFonts.spaceGrotesk(
-                fontSize: 9, color: color, fontWeight: FontWeight.w600)),
+        Text(
+          label,
+          style: GoogleFonts.spaceGrotesk(
+            fontSize: 9,
+            color: color,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ],
     );
   }

@@ -25,7 +25,7 @@ void main() {
     test('default durations are correct', () {
       // Pure unit test without Hive
       expect(25, 25); // work: 25 min
-      expect(5, 5);   // short break: 5 min
+      expect(5, 5); // short break: 5 min
       expect(15, 15); // long break: 15 min
     });
 
@@ -68,7 +68,14 @@ void main() {
 
     test('weekdays detection', () {
       final days = [true, true, true, true, true, false, false];
-      final isWeekdays = days[0] && days[1] && days[2] && days[3] && days[4] && !days[5] && !days[6];
+      final isWeekdays =
+          days[0] &&
+          days[1] &&
+          days[2] &&
+          days[3] &&
+          days[4] &&
+          !days[5] &&
+          !days[6];
       expect(isWeekdays, true);
     });
   });
@@ -76,13 +83,23 @@ void main() {
   group('Task priority', () {
     test('priority 3 is high', () {
       final priority = 3;
-      final label = priority == 3 ? 'High' : priority == 2 ? 'Medium' : 'Low';
+      final label =
+          priority == 3
+              ? 'High'
+              : priority == 2
+              ? 'Medium'
+              : 'Low';
       expect(label, 'High');
     });
 
     test('priority 1 is low', () {
       final priority = 1;
-      final label = priority == 3 ? 'High' : priority == 2 ? 'Medium' : 'Low';
+      final label =
+          priority == 3
+              ? 'High'
+              : priority == 2
+              ? 'Medium'
+              : 'Low';
       expect(label, 'Low');
     });
   });

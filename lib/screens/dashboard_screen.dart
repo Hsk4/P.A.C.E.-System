@@ -33,9 +33,10 @@ class DashboardScreen extends StatelessWidget {
 
   SliverToBoxAdapter _buildHeader(BuildContext context) {
     final now = DateTime.now();
-    final greeting = now.hour < 12
-        ? 'Good morning'
-        : now.hour < 17
+    final greeting =
+        now.hour < 12
+            ? 'Good morning'
+            : now.hour < 17
             ? 'Good afternoon'
             : 'Good evening';
 
@@ -82,7 +83,8 @@ class DashboardScreen extends StatelessWidget {
                     icon: Icons.check_circle_outline,
                     iconColor: AppTheme.success,
                     label: 'Completed',
-                    value: '${tasks.completedToday.length}/${tasks.todayTasks.length}',
+                    value:
+                        '${tasks.completedToday.length}/${tasks.todayTasks.length}',
                     subtitle: 'tasks today',
                   ),
                 ),
@@ -293,7 +295,11 @@ class _EmptyTasks extends StatelessWidget {
       child: Center(
         child: Column(
           children: [
-            Icon(Icons.check_circle_outline, size: 40, color: AppTheme.textMuted),
+            Icon(
+              Icons.check_circle_outline,
+              size: 40,
+              color: AppTheme.textMuted,
+            ),
             const SizedBox(height: 12),
             Text(
               'No tasks scheduled for today',

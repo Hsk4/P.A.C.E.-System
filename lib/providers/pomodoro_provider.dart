@@ -108,10 +108,12 @@ class PomodoroProvider extends ChangeNotifier {
     final box = Hive.box<PomodoroSessionModel>('pomodoro_sessions');
     final today = DateTime.now();
     _todaySessions = box.values
-        .where((s) =>
-            s.date.year == today.year &&
-            s.date.month == today.month &&
-            s.date.day == today.day)
+        .where(
+          (s) =>
+              s.date.year == today.year &&
+              s.date.month == today.month &&
+              s.date.day == today.day,
+        )
         .fold(0, (sum, s) => sum + s.completedPomodoros);
     notifyListeners();
   }
@@ -199,11 +201,15 @@ class PomodoroProvider extends ChangeNotifier {
     final todayKey = '${today.year}-${today.month}-${today.day}';
 
     // Find existing session for today or create new
-    final existing = box.values.where((s) =>
-      s.date.year == today.year &&
-      s.date.month == today.month &&
-      s.date.day == today.day
-    ).firstOrNull;
+    final existing =
+        box.values
+            .where(
+              (s) =>
+                  s.date.year == today.year &&
+                  s.date.month == today.month &&
+                  s.date.day == today.day,
+            )
+            .firstOrNull;
 
     if (existing != null) {
       existing.completedPomodoros++;
@@ -232,10 +238,15 @@ class PomodoroProvider extends ChangeNotifier {
     final now = DateTime.now();
     return List.generate(7, (i) {
       final day = now.subtract(Duration(days: 6 - i));
-      final session = box.values.where((s) =>
-          s.date.year == day.year &&
-          s.date.month == day.month &&
-          s.date.day == day.day).firstOrNull;
+      final session =
+          box.values
+              .where(
+                (s) =>
+                    s.date.year == day.year &&
+                    s.date.month == day.month &&
+                    s.date.day == day.day,
+              )
+              .firstOrNull;
       return {
         'day': day,
         'pomodoros': session?.completedPomodoros ?? 0,

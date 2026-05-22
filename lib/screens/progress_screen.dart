@@ -95,7 +95,10 @@ class ProgressScreen extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [AppTheme.accent.withOpacity(0.15), AppTheme.accentGlow.withOpacity(0.05)],
+                  colors: [
+                    AppTheme.accent.withOpacity(0.15),
+                    AppTheme.accentGlow.withOpacity(0.05),
+                  ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -105,15 +108,32 @@ class ProgressScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('This Week', style: GoogleFonts.spaceGrotesk(fontSize: 15, fontWeight: FontWeight.w600, color: AppTheme.textPrimary)),
+                  Text(
+                    'This Week',
+                    style: GoogleFonts.spaceGrotesk(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: AppTheme.textPrimary,
+                    ),
+                  ),
                   const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _WeekStat(label: 'Tasks Done', value: '${summary['completedTasks']}/${summary['totalTasks']}'),
+                      _WeekStat(
+                        label: 'Tasks Done',
+                        value:
+                            '${summary['completedTasks']}/${summary['totalTasks']}',
+                      ),
                       _WeekStat(label: 'Completion', value: '$rate%'),
-                      _WeekStat(label: 'Pomodoros', value: '${summary['totalPomodoros']}'),
-                      _WeekStat(label: 'Focus Hours', value: '${summary['totalFocusHours']}h'),
+                      _WeekStat(
+                        label: 'Pomodoros',
+                        value: '${summary['totalPomodoros']}',
+                      ),
+                      _WeekStat(
+                        label: 'Focus Hours',
+                        value: '${summary['totalFocusHours']}h',
+                      ),
                     ],
                   ),
                 ],
@@ -135,7 +155,14 @@ class ProgressScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Task Completion (7 days)', style: GoogleFonts.spaceGrotesk(fontSize: 16, fontWeight: FontWeight.w600, color: AppTheme.textPrimary)),
+                Text(
+                  'Task Completion (7 days)',
+                  style: GoogleFonts.spaceGrotesk(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: AppTheme.textPrimary,
+                  ),
+                ),
                 const SizedBox(height: 16),
                 Container(
                   height: 180,
@@ -152,19 +179,29 @@ class ProgressScreen extends StatelessWidget {
                       barTouchData: BarTouchData(enabled: false),
                       titlesData: FlTitlesData(
                         show: true,
-                        leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                        rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                        topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                        leftTitles: const AxisTitles(
+                          sideTitles: SideTitles(showTitles: false),
+                        ),
+                        rightTitles: const AxisTitles(
+                          sideTitles: SideTitles(showTitles: false),
+                        ),
+                        topTitles: const AxisTitles(
+                          sideTitles: SideTitles(showTitles: false),
+                        ),
                         bottomTitles: AxisTitles(
                           sideTitles: SideTitles(
                             showTitles: true,
                             getTitlesWidget: (value, meta) {
                               final i = value.toInt();
-                              if (i < 0 || i >= data.length) return const SizedBox();
+                              if (i < 0 || i >= data.length)
+                                return const SizedBox();
                               final day = data[i]['day'] as DateTime;
                               return Text(
                                 DateFormat('E').format(day)[0],
-                                style: GoogleFonts.spaceGrotesk(fontSize: 11, color: AppTheme.textMuted),
+                                style: GoogleFonts.spaceGrotesk(
+                                  fontSize: 11,
+                                  color: AppTheme.textMuted,
+                                ),
                               );
                             },
                           ),
@@ -179,9 +216,10 @@ class ProgressScreen extends StatelessWidget {
                           barRods: [
                             BarChartRodData(
                               toY: rate > 0 ? rate : 0.05,
-                              color: rate >= 1.0
-                                  ? AppTheme.success
-                                  : rate > 0
+                              color:
+                                  rate >= 1.0
+                                      ? AppTheme.success
+                                      : rate > 0
                                       ? AppTheme.accent
                                       : AppTheme.border,
                               width: 20,
@@ -206,13 +244,23 @@ class ProgressScreen extends StatelessWidget {
       child: Consumer<PomodoroProvider>(
         builder: (_, pomo, __) {
           final data = pomo.getWeeklyStats();
-          final maxY = data.fold<int>(0, (m, d) => d['pomodoros'] > m ? d['pomodoros'] : m);
+          final maxY = data.fold<int>(
+            0,
+            (m, d) => d['pomodoros'] > m ? d['pomodoros'] : m,
+          );
           return Padding(
             padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Pomodoro Sessions (7 days)', style: GoogleFonts.spaceGrotesk(fontSize: 16, fontWeight: FontWeight.w600, color: AppTheme.textPrimary)),
+                Text(
+                  'Pomodoro Sessions (7 days)',
+                  style: GoogleFonts.spaceGrotesk(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: AppTheme.textPrimary,
+                  ),
+                ),
                 const SizedBox(height: 16),
                 Container(
                   height: 180,
@@ -227,22 +275,38 @@ class ProgressScreen extends StatelessWidget {
                       gridData: FlGridData(
                         show: true,
                         horizontalInterval: 1,
-                        getDrawingHorizontalLine: (_) => FlLine(color: AppTheme.border, strokeWidth: 0.5),
+                        getDrawingHorizontalLine:
+                            (_) => FlLine(
+                              color: AppTheme.border,
+                              strokeWidth: 0.5,
+                            ),
                         drawVerticalLine: false,
                       ),
                       titlesData: FlTitlesData(
-                        leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                        rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                        topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                        leftTitles: const AxisTitles(
+                          sideTitles: SideTitles(showTitles: false),
+                        ),
+                        rightTitles: const AxisTitles(
+                          sideTitles: SideTitles(showTitles: false),
+                        ),
+                        topTitles: const AxisTitles(
+                          sideTitles: SideTitles(showTitles: false),
+                        ),
                         bottomTitles: AxisTitles(
                           sideTitles: SideTitles(
                             showTitles: true,
                             getTitlesWidget: (value, meta) {
                               final i = value.toInt();
-                              if (i < 0 || i >= data.length) return const SizedBox();
+                              if (i < 0 || i >= data.length)
+                                return const SizedBox();
                               return Text(
-                                DateFormat('E').format(data[i]['day'] as DateTime)[0],
-                                style: GoogleFonts.spaceGrotesk(fontSize: 11, color: AppTheme.textMuted),
+                                DateFormat(
+                                  'E',
+                                ).format(data[i]['day'] as DateTime)[0],
+                                style: GoogleFonts.spaceGrotesk(
+                                  fontSize: 11,
+                                  color: AppTheme.textMuted,
+                                ),
                               );
                             },
                           ),
@@ -253,18 +317,25 @@ class ProgressScreen extends StatelessWidget {
                       maxY: (maxY + 1).toDouble(),
                       lineBarsData: [
                         LineChartBarData(
-                          spots: List.generate(data.length, (i) =>
-                            FlSpot(i.toDouble(), (data[i]['pomodoros'] as int).toDouble())),
+                          spots: List.generate(
+                            data.length,
+                            (i) => FlSpot(
+                              i.toDouble(),
+                              (data[i]['pomodoros'] as int).toDouble(),
+                            ),
+                          ),
                           isCurved: true,
                           color: AppTheme.pomodoroWork,
                           barWidth: 2.5,
                           dotData: FlDotData(
                             show: true,
-                            getDotPainter: (spot, percent, bar, index) => FlDotCirclePainter(
-                              radius: 4,
-                              color: AppTheme.pomodoroWork,
-                              strokeWidth: 0,
-                            ),
+                            getDotPainter:
+                                (spot, percent, bar, index) =>
+                                    FlDotCirclePainter(
+                                      radius: 4,
+                                      color: AppTheme.pomodoroWork,
+                                      strokeWidth: 0,
+                                    ),
                           ),
                           belowBarData: BarAreaData(
                             show: true,
@@ -292,8 +363,11 @@ class _StatBox extends StatelessWidget {
   final Color color;
 
   const _StatBox({
-    required this.icon, required this.label, required this.value,
-    required this.unit, required this.color,
+    required this.icon,
+    required this.label,
+    required this.value,
+    required this.unit,
+    required this.color,
   });
 
   @override
@@ -310,10 +384,29 @@ class _StatBox extends StatelessWidget {
         children: [
           Text(icon, style: const TextStyle(fontSize: 24)),
           const SizedBox(height: 8),
-          Text(value, style: GoogleFonts.spaceGrotesk(fontSize: 32, fontWeight: FontWeight.w700, color: color)),
-          Text(unit, style: GoogleFonts.spaceGrotesk(fontSize: 11, color: AppTheme.textMuted)),
+          Text(
+            value,
+            style: GoogleFonts.spaceGrotesk(
+              fontSize: 32,
+              fontWeight: FontWeight.w700,
+              color: color,
+            ),
+          ),
+          Text(
+            unit,
+            style: GoogleFonts.spaceGrotesk(
+              fontSize: 11,
+              color: AppTheme.textMuted,
+            ),
+          ),
           const SizedBox(height: 4),
-          Text(label, style: GoogleFonts.spaceGrotesk(fontSize: 12, color: AppTheme.textSecondary)),
+          Text(
+            label,
+            style: GoogleFonts.spaceGrotesk(
+              fontSize: 12,
+              color: AppTheme.textSecondary,
+            ),
+          ),
         ],
       ),
     );
@@ -330,8 +423,21 @@ class _WeekStat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(value, style: GoogleFonts.spaceGrotesk(fontSize: 18, fontWeight: FontWeight.w700, color: AppTheme.textPrimary)),
-        Text(label, style: GoogleFonts.spaceGrotesk(fontSize: 10, color: AppTheme.textSecondary)),
+        Text(
+          value,
+          style: GoogleFonts.spaceGrotesk(
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+            color: AppTheme.textPrimary,
+          ),
+        ),
+        Text(
+          label,
+          style: GoogleFonts.spaceGrotesk(
+            fontSize: 10,
+            color: AppTheme.textSecondary,
+          ),
+        ),
       ],
     );
   }

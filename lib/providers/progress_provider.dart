@@ -27,12 +27,19 @@ class ProgressProvider extends ChangeNotifier {
     final now = DateTime.now();
 
     for (int i = 0; i < 365; i++) {
-      final day = DateTime(now.year, now.month, now.day).subtract(Duration(days: i));
-      final dayTasks = taskBox.values.where((t) {
-        if (t.scheduledAt == null) return false;
-        final s = t.scheduledAt!;
-        return s.year == day.year && s.month == day.month && s.day == day.day;
-      }).toList();
+      final day = DateTime(
+        now.year,
+        now.month,
+        now.day,
+      ).subtract(Duration(days: i));
+      final dayTasks =
+          taskBox.values.where((t) {
+            if (t.scheduledAt == null) return false;
+            final s = t.scheduledAt!;
+            return s.year == day.year &&
+                s.month == day.month &&
+                s.day == day.day;
+          }).toList();
 
       if (dayTasks.isEmpty) {
         if (i == 0) continue; // today might not have tasks yet
@@ -49,7 +56,9 @@ class ProgressProvider extends ChangeNotifier {
     }
 
     _currentStreak = streak;
-    _longestStreak = Hive.box('settings').get('longest_streak', defaultValue: 0);
+    _longestStreak = Hive.box(
+      'settings',
+    ).get('longest_streak', defaultValue: 0);
     if (streak > _longestStreak) {
       _longestStreak = streak;
       Hive.box('settings').put('longest_streak', streak);
@@ -75,8 +84,15 @@ class ProgressProvider extends ChangeNotifier {
       totalTasks += dayTasks.length;
       completedTasks += dayTasks.where((t) => t.isCompleted).length;
 
-      final session = pomBox.values.where((s) =>
-          s.date.year == day.year && s.date.month == day.month && s.date.day == day.day).firstOrNull;
+      final session =
+          pomBox.values
+              .where(
+                (s) =>
+                    s.date.year == day.year &&
+                    s.date.month == day.month &&
+                    s.date.day == day.day,
+              )
+              .firstOrNull;
       if (session != null) {
         totalPomodoros += session.completedPomodoros;
         totalFocusMinutes += session.totalFocusMinutes;
@@ -96,12 +112,19 @@ class ProgressProvider extends ChangeNotifier {
     final taskBox = Hive.box<TaskModel>('tasks');
     final now = DateTime.now();
     return List.generate(7, (i) {
-      final day = DateTime(now.year, now.month, now.day).subtract(Duration(days: 6 - i));
-      final dayTasks = taskBox.values.where((t) {
-        if (t.scheduledAt == null) return false;
-        final s = t.scheduledAt!;
-        return s.year == day.year && s.month == day.month && s.day == day.day;
-      }).toList();
+      final day = DateTime(
+        now.year,
+        now.month,
+        now.day,
+      ).subtract(Duration(days: 6 - i));
+      final dayTasks =
+          taskBox.values.where((t) {
+            if (t.scheduledAt == null) return false;
+            final s = t.scheduledAt!;
+            return s.year == day.year &&
+                s.month == day.month &&
+                s.day == day.day;
+          }).toList();
       final completed = dayTasks.where((t) => t.isCompleted).length;
       return {
         'day': day,

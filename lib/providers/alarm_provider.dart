@@ -12,16 +12,17 @@ class AlarmProvider extends ChangeNotifier {
   final AudioPlayer _player = AudioPlayer();
 
   List<AlarmModel> get alarms => _alarms;
-  List<AlarmModel> get enabledAlarms => _alarms.where((a) => a.isEnabled).toList();
+  List<AlarmModel> get enabledAlarms =>
+      _alarms.where((a) => a.isEnabled).toList();
 
   AlarmProvider() {
     _box = Hive.box<AlarmModel>('alarms');
-    _alarms = _box.values.toList()
-      ..sort((a, b) {
-        final at = a.hour * 60 + a.minute;
-        final bt = b.hour * 60 + b.minute;
-        return at.compareTo(bt);
-      });
+    _alarms =
+        _box.values.toList()..sort((a, b) {
+          final at = a.hour * 60 + a.minute;
+          final bt = b.hour * 60 + b.minute;
+          return at.compareTo(bt);
+        });
   }
 
   Future<void> addAlarm({
@@ -66,7 +67,9 @@ class AlarmProvider extends ChangeNotifier {
     if (alarm.isEnabled) {
       await _scheduleAlarmNotification(alarm);
     } else {
-      await NotificationService.instance.cancelNotification(alarm.notificationId);
+      await NotificationService.instance.cancelNotification(
+        alarm.notificationId,
+      );
     }
     _refreshList();
   }
@@ -74,7 +77,9 @@ class AlarmProvider extends ChangeNotifier {
   Future<void> deleteAlarm(String alarmId) async {
     final alarm = _box.get(alarmId);
     if (alarm != null) {
-      await NotificationService.instance.cancelNotification(alarm.notificationId);
+      await NotificationService.instance.cancelNotification(
+        alarm.notificationId,
+      );
     }
     await _box.delete(alarmId);
     _refreshList();
@@ -116,8 +121,10 @@ class AlarmProvider extends ChangeNotifier {
   }
 
   void _refreshList() {
-    _alarms = _box.values.toList()
-      ..sort((a, b) => (a.hour * 60 + a.minute).compareTo(b.hour * 60 + b.minute));
+    _alarms =
+        _box.values.toList()..sort(
+          (a, b) => (a.hour * 60 + a.minute).compareTo(b.hour * 60 + b.minute),
+        );
     notifyListeners();
   }
 
@@ -128,7 +135,13 @@ class AlarmProvider extends ChangeNotifier {
     AlarmModel? next;
     Duration? minDiff;
     for (final alarm in enabled) {
-      var alarmTime = DateTime(now.year, now.month, now.day, alarm.hour, alarm.minute);
+      var alarmTime = DateTime(
+        now.year,
+        now.month,
+        now.day,
+        alarm.hour,
+        alarm.minute,
+      );
       if (alarmTime.isBefore(now)) {
         alarmTime = alarmTime.add(const Duration(days: 1));
       }

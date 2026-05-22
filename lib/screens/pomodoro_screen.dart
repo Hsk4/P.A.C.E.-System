@@ -193,9 +193,12 @@ class _TimerRing extends StatelessWidget {
 
   Color _phaseColor(PomodoroPhase phase) {
     switch (phase) {
-      case PomodoroPhase.work: return AppTheme.pomodoroWork;
-      case PomodoroPhase.shortBreak: return AppTheme.pomodoroBreak;
-      case PomodoroPhase.longBreak: return AppTheme.pomodoroLong;
+      case PomodoroPhase.work:
+        return AppTheme.pomodoroWork;
+      case PomodoroPhase.shortBreak:
+        return AppTheme.pomodoroBreak;
+      case PomodoroPhase.longBreak:
+        return AppTheme.pomodoroLong;
     }
   }
 }
@@ -205,7 +208,11 @@ class _RingPainter extends CustomPainter {
   final Color color;
   final PomodoroState state;
 
-  _RingPainter({required this.progress, required this.color, required this.state});
+  _RingPainter({
+    required this.progress,
+    required this.color,
+    required this.state,
+  });
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -241,9 +248,10 @@ class _RingPainter extends CustomPainter {
 
     // Glow effect when running
     if (state == PomodoroState.running) {
-      final glowPaint = Paint()
-        ..color = color.withOpacity(0.15)
-        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 16);
+      final glowPaint =
+          Paint()
+            ..color = color.withOpacity(0.15)
+            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 16);
       canvas.drawCircle(center, radius - 4, glowPaint);
     }
   }
@@ -368,9 +376,10 @@ class _LinkedTask extends StatelessWidget {
                   pomo.linkedTaskTitle ?? 'No task linked',
                   style: GoogleFonts.spaceGrotesk(
                     fontSize: 14,
-                    color: pomo.linkedTaskTitle != null
-                        ? AppTheme.textPrimary
-                        : AppTheme.textSecondary,
+                    color:
+                        pomo.linkedTaskTitle != null
+                            ? AppTheme.textPrimary
+                            : AppTheme.textSecondary,
                   ),
                 ),
               ),
@@ -393,7 +402,10 @@ class _LinkedTask extends StatelessWidget {
   }
 
   void _showTaskPicker(
-      BuildContext context, PomodoroProvider pomo, TaskProvider tasks) {
+    BuildContext context,
+    PomodoroProvider pomo,
+    TaskProvider tasks,
+  ) {
     showModalBottomSheet(
       context: context,
       backgroundColor: AppTheme.surface,
@@ -421,22 +433,37 @@ class _LinkedTask extends StatelessWidget {
                 dense: true,
                 contentPadding: EdgeInsets.zero,
                 leading: const Icon(Icons.clear, color: AppTheme.textSecondary),
-                title: Text('No task', style: GoogleFonts.spaceGrotesk(color: AppTheme.textSecondary)),
+                title: Text(
+                  'No task',
+                  style: GoogleFonts.spaceGrotesk(
+                    color: AppTheme.textSecondary,
+                  ),
+                ),
                 onTap: () {
                   pomo.linkTask(null, null);
                   Navigator.pop(ctx);
                 },
               ),
-              ...pending.map((t) => ListTile(
-                dense: true,
-                contentPadding: EdgeInsets.zero,
-                leading: Icon(Icons.check_circle_outline, color: AppTheme.accent),
-                title: Text(t.title, style: GoogleFonts.spaceGrotesk(color: AppTheme.textPrimary)),
-                onTap: () {
-                  pomo.linkTask(t.id, t.title);
-                  Navigator.pop(ctx);
-                },
-              )),
+              ...pending.map(
+                (t) => ListTile(
+                  dense: true,
+                  contentPadding: EdgeInsets.zero,
+                  leading: Icon(
+                    Icons.check_circle_outline,
+                    color: AppTheme.accent,
+                  ),
+                  title: Text(
+                    t.title,
+                    style: GoogleFonts.spaceGrotesk(
+                      color: AppTheme.textPrimary,
+                    ),
+                  ),
+                  onTap: () {
+                    pomo.linkTask(t.id, t.title);
+                    Navigator.pop(ctx);
+                  },
+                ),
+              ),
             ],
           ),
         );
@@ -460,9 +487,10 @@ class _SessionCount extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 4),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: i < (pomo.completedSessions % pomo.sessionsBeforeLongBreak)
-                    ? AppTheme.pomodoroWork
-                    : AppTheme.border,
+                color:
+                    i < (pomo.completedSessions % pomo.sessionsBeforeLongBreak)
+                        ? AppTheme.pomodoroWork
+                        : AppTheme.border,
               ),
             ),
           ),
@@ -516,9 +544,15 @@ class _SettingsCard extends StatelessWidget {
                 children: [
                   _SettingChip(label: 'Focus', value: '${pomo.workDuration}m'),
                   const SizedBox(width: 8),
-                  _SettingChip(label: 'Short', value: '${pomo.shortBreakDuration}m'),
+                  _SettingChip(
+                    label: 'Short',
+                    value: '${pomo.shortBreakDuration}m',
+                  ),
                   const SizedBox(width: 8),
-                  _SettingChip(label: 'Long', value: '${pomo.longBreakDuration}m'),
+                  _SettingChip(
+                    label: 'Long',
+                    value: '${pomo.longBreakDuration}m',
+                  ),
                 ],
               ),
             ],
@@ -541,35 +575,71 @@ class _SettingsCard extends StatelessWidget {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (ctx) => StatefulBuilder(
-        builder: (ctx, setState) => Padding(
-          padding: EdgeInsets.fromLTRB(24, 24, 24, MediaQuery.of(ctx).viewInsets.bottom + 24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Pomodoro Settings',
-                style: GoogleFonts.spaceGrotesk(fontSize: 18, fontWeight: FontWeight.w700, color: AppTheme.textPrimary)),
-              const SizedBox(height: 20),
-              _DurationRow(label: 'Focus Duration', value: work, onChanged: (v) => setState(() => work = v)),
-              _DurationRow(label: 'Short Break', value: shortB, onChanged: (v) => setState(() => shortB = v)),
-              _DurationRow(label: 'Long Break', value: longB, onChanged: (v) => setState(() => longB = v)),
-              _DurationRow(label: 'Sessions before long break', value: sessions, onChanged: (v) => setState(() => sessions = v), min: 1, max: 8),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    pomo.saveSettings(work: work, shortBreak: shortB, longBreak: longB, sessions: sessions);
-                    Navigator.pop(ctx);
-                  },
-                  child: const Text('Save'),
+      builder:
+          (ctx) => StatefulBuilder(
+            builder:
+                (ctx, setState) => Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    24,
+                    24,
+                    24,
+                    MediaQuery.of(ctx).viewInsets.bottom + 24,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Pomodoro Settings',
+                        style: GoogleFonts.spaceGrotesk(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: AppTheme.textPrimary,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      _DurationRow(
+                        label: 'Focus Duration',
+                        value: work,
+                        onChanged: (v) => setState(() => work = v),
+                      ),
+                      _DurationRow(
+                        label: 'Short Break',
+                        value: shortB,
+                        onChanged: (v) => setState(() => shortB = v),
+                      ),
+                      _DurationRow(
+                        label: 'Long Break',
+                        value: longB,
+                        onChanged: (v) => setState(() => longB = v),
+                      ),
+                      _DurationRow(
+                        label: 'Sessions before long break',
+                        value: sessions,
+                        onChanged: (v) => setState(() => sessions = v),
+                        min: 1,
+                        max: 8,
+                      ),
+                      const SizedBox(height: 20),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            pomo.saveSettings(
+                              work: work,
+                              shortBreak: shortB,
+                              longBreak: longB,
+                              sessions: sessions,
+                            );
+                            Navigator.pop(ctx);
+                          },
+                          child: const Text('Save'),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
           ),
-        ),
-      ),
     );
   }
 }
@@ -596,7 +666,13 @@ class _DurationRow extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: GoogleFonts.spaceGrotesk(color: AppTheme.textSecondary, fontSize: 14)),
+          Text(
+            label,
+            style: GoogleFonts.spaceGrotesk(
+              color: AppTheme.textSecondary,
+              fontSize: 14,
+            ),
+          ),
           Row(
             children: [
               IconButton(
@@ -609,7 +685,11 @@ class _DurationRow extends StatelessWidget {
                 child: Center(
                   child: Text(
                     '$value',
-                    style: GoogleFonts.spaceGrotesk(fontSize: 16, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
+                    style: GoogleFonts.spaceGrotesk(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: AppTheme.textPrimary,
+                    ),
                   ),
                 ),
               ),
@@ -644,9 +724,22 @@ class _SettingChip extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(label, style: GoogleFonts.spaceGrotesk(fontSize: 11, color: AppTheme.textSecondary)),
+          Text(
+            label,
+            style: GoogleFonts.spaceGrotesk(
+              fontSize: 11,
+              color: AppTheme.textSecondary,
+            ),
+          ),
           const SizedBox(width: 6),
-          Text(value, style: GoogleFonts.spaceGrotesk(fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.textPrimary)),
+          Text(
+            value,
+            style: GoogleFonts.spaceGrotesk(
+              fontSize: 13,
+              fontWeight: FontWeight.w700,
+              color: AppTheme.textPrimary,
+            ),
+          ),
         ],
       ),
     );

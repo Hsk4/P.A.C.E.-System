@@ -68,7 +68,9 @@ class _NotificationSettingsScreenState
         title: Text(
           'Notifications',
           style: GoogleFonts.spaceGrotesk(
-              fontWeight: FontWeight.w600, color: AppTheme.textPrimary),
+            fontWeight: FontWeight.w600,
+            color: AppTheme.textPrimary,
+          ),
         ),
         backgroundColor: AppTheme.bg,
         elevation: 0,
@@ -84,22 +86,24 @@ class _NotificationSettingsScreenState
                 label: 'Morning summary',
                 subtitle: 'Get a daily overview of your tasks',
                 value: _dailyBriefing,
-                onChanged: (v) => setState(() {
-                  _dailyBriefing = v;
-                  _save();
-                }),
+                onChanged:
+                    (v) => setState(() {
+                      _dailyBriefing = v;
+                      _save();
+                    }),
               ),
               if (_dailyBriefing)
                 _TimeRow(
                   label: 'Briefing time',
                   time: _briefingTime,
-                  onTap: () => _pickTime(
-                    _briefingTime,
-                    (t) => setState(() {
-                      _briefingTime = t;
-                      _save();
-                    }),
-                  ),
+                  onTap:
+                      () => _pickTime(
+                        _briefingTime,
+                        (t) => setState(() {
+                          _briefingTime = t;
+                          _save();
+                        }),
+                      ),
                 ),
             ],
           ),
@@ -111,10 +115,11 @@ class _NotificationSettingsScreenState
                 label: 'Task notifications',
                 subtitle: 'Get reminded when tasks are due',
                 value: _taskReminders,
-                onChanged: (v) => setState(() {
-                  _taskReminders = v;
-                  _save();
-                }),
+                onChanged:
+                    (v) => setState(() {
+                      _taskReminders = v;
+                      _save();
+                    }),
               ),
             ],
           ),
@@ -126,10 +131,11 @@ class _NotificationSettingsScreenState
                 label: 'Session alerts',
                 subtitle: 'Notify when focus/break sessions end',
                 value: _pomodoroAlerts,
-                onChanged: (v) => setState(() {
-                  _pomodoroAlerts = v;
-                  _save();
-                }),
+                onChanged:
+                    (v) => setState(() {
+                      _pomodoroAlerts = v;
+                      _save();
+                    }),
               ),
             ],
           ),
@@ -141,22 +147,24 @@ class _NotificationSettingsScreenState
                 label: 'Daily streak reminder',
                 subtitle: "Don't break your streak!",
                 value: _streakReminder,
-                onChanged: (v) => setState(() {
-                  _streakReminder = v;
-                  _save();
-                }),
+                onChanged:
+                    (v) => setState(() {
+                      _streakReminder = v;
+                      _save();
+                    }),
               ),
               if (_streakReminder)
                 _TimeRow(
                   label: 'Reminder time',
                   time: _streakTime,
-                  onTap: () => _pickTime(
-                    _streakTime,
-                    (t) => setState(() {
-                      _streakTime = t;
-                      _save();
-                    }),
-                  ),
+                  onTap:
+                      () => _pickTime(
+                        _streakTime,
+                        (t) => setState(() {
+                          _streakTime = t;
+                          _save();
+                        }),
+                      ),
                 ),
             ],
           ),
@@ -172,10 +180,11 @@ class _NotificationSettingsScreenState
         Text(
           title,
           style: GoogleFonts.spaceGrotesk(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              color: AppTheme.textMuted,
-              letterSpacing: 1),
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+            color: AppTheme.textMuted,
+            letterSpacing: 1,
+          ),
         ),
         const SizedBox(height: 8),
         Container(
@@ -190,16 +199,20 @@ class _NotificationSettingsScreenState
     );
   }
 
-  Future<void> _pickTime(TimeOfDay initial, ValueChanged<TimeOfDay> onPicked) async {
+  Future<void> _pickTime(
+    TimeOfDay initial,
+    ValueChanged<TimeOfDay> onPicked,
+  ) async {
     final t = await showTimePicker(
       context: context,
       initialTime: initial,
-      builder: (ctx, child) => Theme(
-        data: ThemeData.dark().copyWith(
-          colorScheme: const ColorScheme.dark(primary: AppTheme.accent),
-        ),
-        child: child!,
-      ),
+      builder:
+          (ctx, child) => Theme(
+            data: ThemeData.dark().copyWith(
+              colorScheme: const ColorScheme.dark(primary: AppTheme.accent),
+            ),
+            child: child!,
+          ),
     );
     if (t != null) onPicked(t);
   }
@@ -228,14 +241,21 @@ class _ToggleRow extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(label,
-                    style: GoogleFonts.spaceGrotesk(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: AppTheme.textPrimary)),
-                Text(subtitle,
-                    style: GoogleFonts.spaceGrotesk(
-                        fontSize: 12, color: AppTheme.textSecondary)),
+                Text(
+                  label,
+                  style: GoogleFonts.spaceGrotesk(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: AppTheme.textPrimary,
+                  ),
+                ),
+                Text(
+                  subtitle,
+                  style: GoogleFonts.spaceGrotesk(
+                    fontSize: 12,
+                    color: AppTheme.textSecondary,
+                  ),
+                ),
               ],
             ),
           ),
@@ -251,11 +271,16 @@ class _TimeRow extends StatelessWidget {
   final TimeOfDay time;
   final VoidCallback onTap;
 
-  const _TimeRow({required this.label, required this.time, required this.onTap});
+  const _TimeRow({
+    required this.label,
+    required this.time,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final h = time.hour > 12 ? time.hour - 12 : (time.hour == 0 ? 12 : time.hour);
+    final h =
+        time.hour > 12 ? time.hour - 12 : (time.hour == 0 ? 12 : time.hour);
     final period = time.hour < 12 ? 'AM' : 'PM';
     return GestureDetector(
       onTap: onTap,
@@ -270,15 +295,20 @@ class _TimeRow extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(label,
-                style: GoogleFonts.spaceGrotesk(
-                    fontSize: 13, color: AppTheme.textSecondary)),
+            Text(
+              label,
+              style: GoogleFonts.spaceGrotesk(
+                fontSize: 13,
+                color: AppTheme.textSecondary,
+              ),
+            ),
             Text(
               '${h.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')} $period',
               style: GoogleFonts.spaceGrotesk(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700,
-                  color: AppTheme.accent),
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color: AppTheme.accent,
+              ),
             ),
           ],
         ),

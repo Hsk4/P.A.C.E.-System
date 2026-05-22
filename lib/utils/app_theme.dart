@@ -8,7 +8,7 @@ class AppTheme {
   static const Color surfaceElevated = Color(0xFF1A1A26);
   static const Color border = Color(0xFF252535);
 
-  static const Color accent = Color(0xFF7C3AED);       // violet
+  static const Color accent = Color(0xFF7C3AED); // violet
   static const Color accentGlow = Color(0xFF9D5FF5);
   static const Color accentSoft = Color(0x337C3AED);
 
@@ -42,40 +42,52 @@ class AppTheme {
       textTheme: GoogleFonts.spaceGroteskTextTheme(
         const TextTheme(
           displayLarge: TextStyle(
-            fontSize: 48, fontWeight: FontWeight.w700,
-            color: textPrimary, letterSpacing: -1.5,
+            fontSize: 48,
+            fontWeight: FontWeight.w700,
+            color: textPrimary,
+            letterSpacing: -1.5,
           ),
           displayMedium: TextStyle(
-            fontSize: 36, fontWeight: FontWeight.w700,
-            color: textPrimary, letterSpacing: -1,
+            fontSize: 36,
+            fontWeight: FontWeight.w700,
+            color: textPrimary,
+            letterSpacing: -1,
           ),
           headlineLarge: TextStyle(
-            fontSize: 28, fontWeight: FontWeight.w600,
+            fontSize: 28,
+            fontWeight: FontWeight.w600,
             color: textPrimary,
           ),
           headlineMedium: TextStyle(
-            fontSize: 22, fontWeight: FontWeight.w600,
+            fontSize: 22,
+            fontWeight: FontWeight.w600,
             color: textPrimary,
           ),
           titleLarge: TextStyle(
-            fontSize: 18, fontWeight: FontWeight.w600,
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
             color: textPrimary,
           ),
           titleMedium: TextStyle(
-            fontSize: 16, fontWeight: FontWeight.w500,
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
             color: textPrimary,
           ),
           bodyLarge: TextStyle(
-            fontSize: 16, fontWeight: FontWeight.w400,
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
             color: textSecondary,
           ),
           bodyMedium: TextStyle(
-            fontSize: 14, fontWeight: FontWeight.w400,
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
             color: textSecondary,
           ),
           labelLarge: TextStyle(
-            fontSize: 14, fontWeight: FontWeight.w600,
-            color: textPrimary, letterSpacing: 0.5,
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: textPrimary,
+            letterSpacing: 0.5,
           ),
         ),
       ),
@@ -139,10 +151,14 @@ class AppTheme {
       ),
       switchTheme: SwitchThemeData(
         thumbColor: WidgetStateProperty.resolveWith(
-          (states) => states.contains(WidgetState.selected) ? accent : textMuted,
+          (states) =>
+              states.contains(WidgetState.selected) ? accent : textMuted,
         ),
         trackColor: WidgetStateProperty.resolveWith(
-          (states) => states.contains(WidgetState.selected) ? accentSoft : surfaceElevated,
+          (states) =>
+              states.contains(WidgetState.selected)
+                  ? accentSoft
+                  : surfaceElevated,
         ),
       ),
     );

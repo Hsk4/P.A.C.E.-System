@@ -13,10 +13,10 @@ class TaskProvider extends ChangeNotifier {
   List<TaskModel> get todayTasks {
     final now = DateTime.now();
     return _tasks.where((t) {
-      if (t.scheduledAt == null) return false;
-      final s = t.scheduledAt!;
-      return s.year == now.year && s.month == now.month && s.day == now.day;
-    }).toList()
+        if (t.scheduledAt == null) return false;
+        final s = t.scheduledAt!;
+        return s.year == now.year && s.month == now.month && s.day == now.day;
+      }).toList()
       ..sort((a, b) => a.scheduledAt!.compareTo(b.scheduledAt!));
   }
 
@@ -99,7 +99,9 @@ class TaskProvider extends ChangeNotifier {
   Future<void> deleteTask(String taskId) async {
     final task = _box.get(taskId);
     if (task != null && task.notificationId != null) {
-      await NotificationService.instance.cancelNotification(task.notificationId!);
+      await NotificationService.instance.cancelNotification(
+        task.notificationId!,
+      );
     }
     await _box.delete(taskId);
     _tasks = _box.values.toList();
@@ -117,6 +119,8 @@ class TaskProvider extends ChangeNotifier {
 
   Map<String, int> getCategoryStats() {
     final categories = ['work', 'personal', 'health', 'learning'];
-    return {for (var c in categories) c: _tasks.where((t) => t.category == c).length};
+    return {
+      for (var c in categories) c: _tasks.where((t) => t.category == c).length,
+    };
   }
 }

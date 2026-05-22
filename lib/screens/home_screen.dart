@@ -32,10 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.bg,
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _screens,
-      ),
+      body: IndexedStack(index: _currentIndex, children: _screens),
       bottomNavigationBar: _buildNavBar(),
     );
   }
@@ -55,7 +52,12 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               _navItem(0, Icons.dashboard_outlined, Icons.dashboard, 'Today'),
               _navItem(1, Icons.timer_outlined, Icons.timer, 'Focus'),
-              _navItem(2, Icons.check_circle_outline, Icons.check_circle, 'Tasks'),
+              _navItem(
+                2,
+                Icons.check_circle_outline,
+                Icons.check_circle,
+                'Tasks',
+              ),
               _navItem(3, Icons.alarm_outlined, Icons.alarm, 'Alarms'),
               _navItem(4, Icons.bar_chart_outlined, Icons.bar_chart, 'Stats'),
               _settingsItem(),
@@ -106,10 +108,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _settingsItem() {
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => const SettingsScreen()),
-      ),
+      onTap:
+          () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const SettingsScreen()),
+          ),
       behavior: HitTestBehavior.opaque,
       child: SizedBox(
         width: 56,
@@ -118,12 +121,19 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-              child: const Icon(Icons.settings_outlined, size: 20, color: AppTheme.textMuted),
+              child: const Icon(
+                Icons.settings_outlined,
+                size: 20,
+                color: AppTheme.textMuted,
+              ),
             ),
             const SizedBox(height: 2),
             Text(
               'Settings',
-              style: GoogleFonts.spaceGrotesk(fontSize: 9, color: AppTheme.textMuted),
+              style: GoogleFonts.spaceGrotesk(
+                fontSize: 9,
+                color: AppTheme.textMuted,
+              ),
             ),
           ],
         ),

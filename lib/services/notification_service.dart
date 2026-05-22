@@ -25,7 +25,8 @@ class NotificationService {
 
     await _plugin
         .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
+          AndroidFlutterLocalNotificationsPlugin
+        >()
         ?.requestNotificationsPermission();
   }
 
@@ -52,7 +53,10 @@ class NotificationService {
           icon: '@mipmap/launcher_icon',
           color: const Color(0xFF7C3AED),
         ),
-        iOS: const DarwinNotificationDetails(presentAlert: true, presentSound: true),
+        iOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentSound: true,
+        ),
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
@@ -72,7 +76,8 @@ class NotificationService {
       _nextInstanceOfTime(hour, minute),
       const NotificationDetails(
         android: AndroidNotificationDetails(
-          'daily_briefing', 'Daily Briefing',
+          'daily_briefing',
+          'Daily Briefing',
           channelDescription: 'Morning summary of your tasks',
           importance: Importance.defaultImportance,
           priority: Priority.defaultPriority,
@@ -96,7 +101,14 @@ class NotificationService {
     String? customSoundPath,
   }) async {
     final now = tz.TZDateTime.now(tz.local);
-    var scheduledDate = tz.TZDateTime(tz.local, now.year, now.month, now.day, hour, minute);
+    var scheduledDate = tz.TZDateTime(
+      tz.local,
+      now.year,
+      now.month,
+      now.day,
+      hour,
+      minute,
+    );
     if (scheduledDate.isBefore(now)) {
       scheduledDate = scheduledDate.add(const Duration(days: 1));
     }
@@ -109,31 +121,44 @@ class NotificationService {
       scheduledDate,
       NotificationDetails(
         android: AndroidNotificationDetails(
-          'alarms', 'Alarms',
+          'alarms',
+          'Alarms',
           channelDescription: 'Alarm notifications',
           importance: Importance.max,
           priority: Priority.max,
           fullScreenIntent: true,
           icon: '@mipmap/launcher_icon',
-          sound: customSoundPath != null ? UriAndroidNotificationSound(customSoundPath) : null,
+          sound:
+              customSoundPath != null
+                  ? UriAndroidNotificationSound(customSoundPath)
+                  : null,
         ),
-        iOS: DarwinNotificationDetails(presentAlert: true, presentSound: true, sound: customSoundPath),
+        iOS: DarwinNotificationDetails(
+          presentAlert: true,
+          presentSound: true,
+          sound: customSoundPath,
+        ),
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
-      matchDateTimeComponents: hasRepeat ? DateTimeComponents.dayOfWeekAndTime : null,
+      matchDateTimeComponents:
+          hasRepeat ? DateTimeComponents.dayOfWeekAndTime : null,
     );
   }
 
-  Future<void> showPomodoroComplete({required bool isBreak, required int sessionCount}) async {
+  Future<void> showPomodoroComplete({
+    required bool isBreak,
+    required int sessionCount,
+  }) async {
     await _plugin.show(
       8888,
       isBreak ? 'Break time!' : 'Focus session complete!',
       isBreak ? 'Take a well-deserved break.' : 'Session #$sessionCount done.',
       const NotificationDetails(
         android: AndroidNotificationDetails(
-          'pomodoro', 'Pomodoro',
+          'pomodoro',
+          'Pomodoro',
           channelDescription: 'Pomodoro timer notifications',
           importance: Importance.high,
           priority: Priority.high,
