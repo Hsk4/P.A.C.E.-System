@@ -211,7 +211,7 @@ class _AddTaskSheetState extends State<_AddTaskSheet> {
   int _priority = 2;
   DateTime? _scheduledAt;
   bool _notificationEnabled = true;
-  bool _isRecurring = false;
+  final bool _isRecurring = false;
   String? _recurrenceRule;
 
   final _categories = [

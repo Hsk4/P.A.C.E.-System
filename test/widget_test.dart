@@ -1,9 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:provider/provider.dart';
 
-import 'package:schedulr/providers/pomodoro_provider.dart';
 import 'package:schedulr/utils/app_theme.dart';
 
 void main() {
@@ -55,19 +51,19 @@ void main() {
 
   group('Alarm model helpers', () {
     test('repeatLabel for all days is Every day', () {
-      final days = List.filled(7, true);
+      const days = List.filled(7, true);
       final allActive = days.every((d) => d);
       expect(allActive, true);
     });
 
     test('repeatLabel for no days is Once', () {
-      final days = List.filled(7, false);
+      const days = List.filled(7, false);
       final noneActive = days.every((d) => !d);
       expect(noneActive, true);
     });
 
     test('weekdays detection', () {
-      final days = [true, true, true, true, true, false, false];
+      const days = [true, true, true, true, true, false, false];
       final isWeekdays =
           days[0] &&
           days[1] &&
@@ -82,7 +78,7 @@ void main() {
 
   group('Task priority', () {
     test('priority 3 is high', () {
-      final priority = 3;
+      const priority = 3;
       final label =
           priority == 3
               ? 'High'
@@ -93,7 +89,7 @@ void main() {
     });
 
     test('priority 1 is low', () {
-      final priority = 1;
+      const priority = 1;
       final label =
           priority == 3
               ? 'High'

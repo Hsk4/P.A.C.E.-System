@@ -293,7 +293,7 @@ class _AddAlarmSheetState extends State<_AddAlarmSheet> {
   final _labelController = TextEditingController(text: 'Alarm');
   int _hour = TimeOfDay.now().hour;
   int _minute = TimeOfDay.now().minute;
-  List<bool> _repeatDays = List.filled(7, false);
+  final List<bool> _repeatDays = List.filled(7, false);
   String? _customRingtonePath;
   String _ringtoneName = 'Default';
   int _volume = 80;
@@ -382,7 +382,11 @@ class _AddAlarmSheetState extends State<_AddAlarmSheet> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: List.generate(7, (i) {
                 return GestureDetector(
-                  onTap: () => setState(() => _repeatDays[i] = !_repeatDays[i]),
+                  onTap: () {
+                    setState(() {
+                      _repeatDays[i] = !_repeatDays[i];
+                    });
+                  },
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
                     width: 38,

@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 
 import '../providers/pomodoro_provider.dart';
 import '../providers/progress_provider.dart';
-import '../providers/task_provider.dart';
 import '../utils/app_theme.dart';
 
 class ProgressScreen extends StatelessWidget {
@@ -193,8 +192,9 @@ class ProgressScreen extends StatelessWidget {
                             showTitles: true,
                             getTitlesWidget: (value, meta) {
                               final i = value.toInt();
-                              if (i < 0 || i >= data.length)
+                              if (i < 0 || i >= data.length) {
                                 return const SizedBox();
+                              }
                               final day = data[i]['day'] as DateTime;
                               return Text(
                                 DateFormat('E').format(day)[0],
@@ -276,7 +276,7 @@ class ProgressScreen extends StatelessWidget {
                         show: true,
                         horizontalInterval: 1,
                         getDrawingHorizontalLine:
-                            (_) => FlLine(
+                            (_) => const FlLine(
                               color: AppTheme.border,
                               strokeWidth: 0.5,
                             ),
@@ -297,8 +297,9 @@ class ProgressScreen extends StatelessWidget {
                             showTitles: true,
                             getTitlesWidget: (value, meta) {
                               final i = value.toInt();
-                              if (i < 0 || i >= data.length)
+                              if (i < 0 || i >= data.length) {
                                 return const SizedBox();
+                              }
                               return Text(
                                 DateFormat(
                                   'E',

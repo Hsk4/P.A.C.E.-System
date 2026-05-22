@@ -91,14 +91,6 @@ class AppTheme {
           ),
         ),
       ),
-      cardTheme: CardThemeData(
-        color: surface,
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-          side: const BorderSide(color: border, width: 1),
-        ),
-      ),
       appBarTheme: const AppBarTheme(
         backgroundColor: bg,
         foregroundColor: textPrimary,

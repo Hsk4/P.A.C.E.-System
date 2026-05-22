@@ -47,7 +47,7 @@ class DashboardScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              greeting + ', Hammad 👋',
+              '$greeting, Hammad 👋',
               style: GoogleFonts.spaceGrotesk(
                 fontSize: 26,
                 fontWeight: FontWeight.w700,
@@ -73,7 +73,6 @@ class DashboardScreen extends StatelessWidget {
     return SliverToBoxAdapter(
       child: Consumer3<TaskProvider, PomodoroProvider, AlarmProvider>(
         builder: (context, tasks, pomo, alarm, _) {
-          final rate = tasks.todayCompletionRate;
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Row(
@@ -295,7 +294,7 @@ class _EmptyTasks extends StatelessWidget {
       child: Center(
         child: Column(
           children: [
-            Icon(
+            const Icon(
               Icons.check_circle_outline,
               size: 40,
               color: AppTheme.textMuted,
