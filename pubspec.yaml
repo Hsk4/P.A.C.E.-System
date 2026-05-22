@@ -1,0 +1,73 @@
+name: schedulr
+description: Personal Scheduling App — Pomodoro, Alarms, Tasks & Progress Tracker by Hammad
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.10.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State management
+  provider: ^6.1.1
+
+  # Local database
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  path_provider: ^2.1.1
+
+  # Notifications
+  flutter_local_notifications: ^17.0.0
+  timezone: ^0.9.2
+
+  # Audio (alarm ringtones)
+  just_audio: ^0.9.36
+  file_picker: ^6.1.1
+  permission_handler: ^11.1.0
+
+  # UI & Design
+  google_fonts: ^6.1.0
+  flutter_animate: ^4.3.0
+  fl_chart: ^0.66.2
+  percent_indicator: ^4.2.3
+
+  # Date & Time
+  intl: ^0.19.0
+
+  # Icons
+  cupertino_icons: ^1.0.6
+  flutter_svg: ^2.0.9
+
+  # Utilities
+  uuid: ^4.2.2
+  wakelock_plus: ^1.1.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.7
+  flutter_launcher_icons: ^0.13.1
+
+# ─── Launcher Icons Config ───────────────────────────────────
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/app_icon.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#0D0D0D"
+  adaptive_icon_foreground: "assets/icons/app_icon_foreground.png"
+  remove_alpha_ios: true
+  web:
+    generate: false
+
+# ─── Flutter Assets ─────────────────────────────────────────
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icons/
+    - assets/sounds/

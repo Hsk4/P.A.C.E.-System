@@ -1,0 +1,7 @@
+# Copy this file to android/key.properties and fill in your keystore details
+# DO NOT commit key.properties to version control — it's in .gitignore
+
+storePassword=YOUR_STORE_PASSWORD
+keyPassword=YOUR_KEY_PASSWORD
+keyAlias=YOUR_KEY_ALIAS
+storeFile=schedulr-release.jks
