@@ -1,8 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:schedulr/utils/app_theme.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
   group('AppTheme', () {
     test('has correct brand colors', () {
       expect(AppTheme.accent.value, 0xFF7C3AED);
