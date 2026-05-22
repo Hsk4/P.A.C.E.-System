@@ -51,13 +51,13 @@ void main() {
 
   group('Alarm model helpers', () {
     test('repeatLabel for all days is Every day', () {
-      const days = List.filled(7, true);
+      final days = List.filled(7, true);
       final allActive = days.every((d) => d);
       expect(allActive, true);
     });
 
     test('repeatLabel for no days is Once', () {
-      const days = List.filled(7, false);
+      final days = List.filled(7, false);
       final noneActive = days.every((d) => !d);
       expect(noneActive, true);
     });
