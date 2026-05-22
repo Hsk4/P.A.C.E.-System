@@ -100,7 +100,7 @@ class AppTheme {
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: surface,
         indicatorColor: accentSoft,
-        labelTextStyle: WidgetStateProperty.all(
+        labelTextStyle: MaterialStateProperty.all(
           GoogleFonts.spaceGrotesk(
             fontSize: 11,
             fontWeight: FontWeight.w500,
@@ -142,13 +142,13 @@ class AppTheme {
         ),
       ),
       switchTheme: SwitchThemeData(
-        thumbColor: WidgetStateProperty.resolveWith(
+        thumbColor: MaterialStateProperty.resolveWith(
           (states) =>
-              states.contains(WidgetState.selected) ? accent : textMuted,
+              states.contains(MaterialState.selected) ? accent : textMuted,
         ),
-        trackColor: WidgetStateProperty.resolveWith(
+        trackColor: MaterialStateProperty.resolveWith(
           (states) =>
-              states.contains(WidgetState.selected)
+              states.contains(MaterialState.selected)
                   ? accentSoft
                   : surfaceElevated,
         ),
