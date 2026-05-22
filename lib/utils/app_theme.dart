@@ -35,6 +35,7 @@ class AppTheme {
         primary: accent,
         secondary: accentGlow,
         surface: surface,
+        background: bg,
         error: danger,
         onPrimary: Colors.white,
         onSurface: textPrimary,
