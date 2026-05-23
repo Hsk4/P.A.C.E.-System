@@ -23,7 +23,7 @@ class TaskTile extends StatelessWidget {
         padding: const EdgeInsets.only(right: 20),
         margin: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
-          color: AppTheme.danger.withOpacity(0.15),
+          color: AppTheme.danger.withValues(alpha: 0.15),
           borderRadius: BorderRadius.circular(14),
         ),
         child: const Icon(Icons.delete_outline, color: AppTheme.danger),
@@ -42,7 +42,7 @@ class TaskTile extends StatelessWidget {
               color:
                   task.isCompleted
                       ? AppTheme.border
-                      : _priorityColor(task.priority).withOpacity(0.25),
+                      : _priorityColor(task.priority).withValues(alpha: 0.25),
             ),
           ),
           child: Row(
@@ -116,7 +116,7 @@ class TaskTile extends StatelessWidget {
                       const SizedBox(height: 4),
                       Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.schedule_outlined,
                             size: 11,
                             color: AppTheme.textMuted,
@@ -268,7 +268,7 @@ class _CategoryBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.15),
+        color: color.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(6),
       ),
       child: Text(

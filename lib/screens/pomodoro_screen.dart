@@ -120,7 +120,7 @@ class _PhasePill extends StatelessWidget {
         duration: const Duration(milliseconds: 250),
         padding: const EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(
-          color: isActive ? color.withOpacity(0.2) : AppTheme.surface,
+          color: isActive ? color.withValues(alpha: 0.2) : AppTheme.surface,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: isActive ? color : AppTheme.border,
@@ -250,7 +250,7 @@ class _RingPainter extends CustomPainter {
     if (state == PomodoroState.running) {
       final glowPaint =
           Paint()
-            ..color = color.withOpacity(0.15)
+            ..color = color.withValues(alpha: 0.15)
             ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 16);
       canvas.drawCircle(center, radius - 4, glowPaint);
     }
@@ -294,7 +294,7 @@ class _Controls extends StatelessWidget {
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: AppTheme.pomodoroWork.withOpacity(0.4),
+                      color: AppTheme.pomodoroWork.withValues(alpha: 0.4),
                       blurRadius: 20,
                       spreadRadius: 2,
                     ),
@@ -369,7 +369,7 @@ class _LinkedTask extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Icon(Icons.link, size: 18, color: AppTheme.textSecondary),
+              const Icon(Icons.link, size: 18, color: AppTheme.textSecondary),
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
@@ -448,7 +448,7 @@ class _LinkedTask extends StatelessWidget {
                 (t) => ListTile(
                   dense: true,
                   contentPadding: EdgeInsets.zero,
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.check_circle_outline,
                     color: AppTheme.accent,
                   ),

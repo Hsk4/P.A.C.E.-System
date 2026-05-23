@@ -77,16 +77,18 @@ class AlarmModel extends HiveObject {
         repeatDays[3] &&
         repeatDays[4] &&
         !repeatDays[5] &&
-        !repeatDays[6])
+        !repeatDays[6]) {
       return 'Weekdays';
+    }
     if (!repeatDays[0] &&
         !repeatDays[1] &&
         !repeatDays[2] &&
         !repeatDays[3] &&
         !repeatDays[4] &&
         repeatDays[5] &&
-        repeatDays[6])
+        repeatDays[6]) {
       return 'Weekends';
+    }
     const dayNames = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
     final active = <String>[];
     for (int i = 0; i < 7; i++) {

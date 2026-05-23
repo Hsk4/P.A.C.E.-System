@@ -52,7 +52,7 @@ class AlarmScreen extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.alarm_off_outlined,
                             size: 48,
                             color: AppTheme.textMuted,
@@ -125,7 +125,7 @@ class _AlarmCard extends StatelessWidget {
         border: Border.all(
           color:
               alarm.isEnabled
-                  ? AppTheme.info.withOpacity(0.3)
+                  ? AppTheme.info.withValues(alpha: 0.3)
                   : AppTheme.border,
         ),
       ),
@@ -193,7 +193,7 @@ class _AlarmCard extends StatelessWidget {
                 const SizedBox(height: 4),
                 Row(
                   children: [
-                    Icon(Icons.repeat, size: 12, color: AppTheme.textMuted),
+                    const Icon(Icons.repeat, size: 12, color: AppTheme.textMuted),
                     const SizedBox(width: 4),
                     Text(
                       alarm.repeatLabel,
@@ -204,7 +204,7 @@ class _AlarmCard extends StatelessWidget {
                     ),
                     if (alarm.customRingtonePath != null) ...[
                       const SizedBox(width: 8),
-                      Icon(
+                      const Icon(
                         Icons.music_note,
                         size: 12,
                         color: AppTheme.textMuted,
@@ -334,9 +334,9 @@ class _AddAlarmSheetState extends State<_AddAlarmSheet> {
                 width: double.infinity,
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: AppTheme.info.withOpacity(0.1),
+                  color: AppTheme.info.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: AppTheme.info.withOpacity(0.3)),
+                  border: Border.all(color: AppTheme.info.withValues(alpha: 0.3)),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -531,11 +531,12 @@ class _AddAlarmSheetState extends State<_AddAlarmSheet> {
             child: child!,
           ),
     );
-    if (time != null)
+    if (time != null) {
       setState(() {
         _hour = time.hour;
         _minute = time.minute;
       });
+    }
   }
 
   Future<void> _pickRingtone() async {

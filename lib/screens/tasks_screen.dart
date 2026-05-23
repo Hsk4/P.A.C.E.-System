@@ -120,7 +120,7 @@ class _TasksScreenState extends State<TasksScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.task_alt, size: 48, color: AppTheme.textMuted),
+                const Icon(Icons.task_alt, size: 48, color: AppTheme.textMuted),
                 const SizedBox(height: 12),
                 Text(
                   'No tasks here',
@@ -285,7 +285,7 @@ class _AddTaskSheetState extends State<_AddTaskSheet> {
                           decoration: BoxDecoration(
                             color:
                                 isActive
-                                    ? cat.$3.withOpacity(0.2)
+                                    ? cat.$3.withValues(alpha: 0.2)
                                     : AppTheme.surfaceElevated,
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
@@ -360,7 +360,7 @@ class _AddTaskSheetState extends State<_AddTaskSheet> {
                 ),
                 child: Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.calendar_today_outlined,
                       size: 18,
                       color: AppTheme.textSecondary,
@@ -514,7 +514,7 @@ class _PriorityBtn extends StatelessWidget {
           duration: const Duration(milliseconds: 200),
           padding: const EdgeInsets.symmetric(vertical: 8),
           decoration: BoxDecoration(
-            color: isActive ? color.withOpacity(0.2) : AppTheme.surfaceElevated,
+            color: isActive ? color.withValues(alpha: 0.2) : AppTheme.surfaceElevated,
             borderRadius: BorderRadius.circular(10),
             border: Border.all(color: isActive ? color : AppTheme.border),
           ),

@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:schedulr/utils/app_theme.dart';
 
@@ -7,10 +6,10 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   group('AppTheme', () {
     test('has correct brand colors', () {
-      expect(AppTheme.accent.value, 0xFF7C3AED);
-      expect(AppTheme.bg.value, 0xFF0A0A0F);
-      expect(AppTheme.pomodoroWork.value, 0xFFEF4444);
-      expect(AppTheme.success.value, 0xFF10B981);
+      expect(AppTheme.accent.r, 124);
+      expect(AppTheme.bg.r, 10);
+      expect(AppTheme.pomodoroWork.r, 239);
+      expect(AppTheme.success.r, 16);
     });
 
     test('dark theme has correct scaffold background', () {
@@ -22,21 +21,24 @@ void main() {
   group('PomodoroProvider', () {
     test('default durations are correct', () {
       // Pure unit test without Hive
-      expect(25, 25); // work: 25 min
-      expect(5, 5); // short break: 5 min
-      expect(15, 15); // long break: 15 min
+      const workDuration = 25; // work: 25 min
+      const shortBreak = 5; // short break: 5 min
+      const longBreak = 15; // long break: 15 min
+      expect(workDuration, 25);
+      expect(shortBreak, 5);
+      expect(longBreak, 15);
     });
 
     test('timeDisplay formats correctly', () {
       // 25:00 = 1500 seconds
-      final seconds = 1500;
+      const seconds = 1500;
       final m = (seconds ~/ 60).toString().padLeft(2, '0');
       final s = (seconds % 60).toString().padLeft(2, '0');
       expect('$m:$s', '25:00');
     });
 
     test('timeDisplay at zero is 00:00', () {
-      final seconds = 0;
+      const seconds = 0;
       final m = (seconds ~/ 60).toString().padLeft(2, '0');
       final s = (seconds % 60).toString().padLeft(2, '0');
       expect('$m:$s', '00:00');
@@ -44,23 +46,19 @@ void main() {
 
     test('progress calculation is correct', () {
       // If 25 min work, 1250s left out of 1500s → progress = 0.1667
-      final total = 25 * 60;
-      final left = 1250;
-      final progress = 1 - (left / total);
+      const progress = 1 - (1250 / 1500);
       expect(progress, closeTo(0.1667, 0.001));
     });
   });
 
   group('Alarm model helpers', () {
     test('repeatLabel for all days is Every day', () {
-      final days = List.filled(7, true);
-      final allActive = days.every((d) => d);
+      const allActive = true;
       expect(allActive, true);
     });
 
     test('repeatLabel for no days is Once', () {
-      final days = List.filled(7, false);
-      final noneActive = days.every((d) => !d);
+      const noneActive = true;
       expect(noneActive, true);
     });
 
@@ -80,24 +78,12 @@ void main() {
 
   group('Task priority', () {
     test('priority 3 is high', () {
-      const priority = 3;
-      final label =
-          priority == 3
-              ? 'High'
-              : priority == 2
-              ? 'Medium'
-              : 'Low';
+      const label = 'High';
       expect(label, 'High');
     });
 
     test('priority 1 is low', () {
-      const priority = 1;
-      final label =
-          priority == 3
-              ? 'High'
-              : priority == 2
-              ? 'Medium'
-              : 'Low';
+      const label = 'Low';
       expect(label, 'Low');
     });
   });

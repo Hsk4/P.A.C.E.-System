@@ -43,7 +43,7 @@ class NotificationService {
       'Task: $title',
       body,
       tz.TZDateTime.from(scheduledAt, tz.local),
-      NotificationDetails(
+      const NotificationDetails(
         android: AndroidNotificationDetails(
           'task_reminders',
           'Task Reminders',
@@ -51,9 +51,9 @@ class NotificationService {
           importance: Importance.high,
           priority: Priority.high,
           icon: '@mipmap/launcher_icon',
-          color: const Color(0xFF7C3AED),
+          color: Color(0xFF7C3AED),
         ),
-        iOS: const DarwinNotificationDetails(
+        iOS: DarwinNotificationDetails(
           presentAlert: true,
           presentSound: true,
         ),

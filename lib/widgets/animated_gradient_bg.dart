@@ -52,7 +52,7 @@ class _AnimatedGradientBgState extends State<AnimatedGradientBg>
             )!,
             radius: 1.2,
             colors: [
-              widget.primaryColor.withOpacity(0.08),
+              widget.primaryColor.withValues(alpha: 0.08),
               AppTheme.bg,
             ],
           ),
