@@ -539,7 +539,7 @@ class _AddAlarmSheetState extends State<_AddAlarmSheet> {
   }
 
   Future<void> _pickRingtone() async {
-    final result = await FilePicker.platform.pickFiles(
+    final result = await (FilePicker as dynamic).platform.pickFiles(
       type: FileType.audio,
       allowMultiple: false,
     );
