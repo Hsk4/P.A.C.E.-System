@@ -284,7 +284,7 @@ class _AddTaskSheetState extends State<_AddTaskSheet> {
                           decoration: BoxDecoration(
                             color:
                                 isActive
-                                    ? cat.$3.withOpacity(0.2)
+                                    ? cat.$3.withValues(alpha: 0.2)
                                     : AppTheme.surfaceElevated,
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
@@ -513,7 +513,7 @@ class _PriorityBtn extends StatelessWidget {
           duration: const Duration(milliseconds: 200),
           padding: const EdgeInsets.symmetric(vertical: 8),
           decoration: BoxDecoration(
-            color: isActive ? color.withOpacity(0.2) : AppTheme.surfaceElevated,
+            color: isActive ? color.withValues(alpha: 0.2) : AppTheme.surfaceElevated,
             borderRadius: BorderRadius.circular(10),
             border: Border.all(color: isActive ? color : AppTheme.border),
           ),
@@ -532,3 +532,4 @@ class _PriorityBtn extends StatelessWidget {
     );
   }
 }
+

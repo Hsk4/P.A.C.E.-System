@@ -97,7 +97,7 @@ class AppTheme {
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: surface,
         indicatorColor: accentSoft,
-        labelTextStyle: MaterialStateProperty.all(
+        labelTextStyle: WidgetStateProperty.all(
           TextStyle(
             fontSize: 11,
             fontWeight: FontWeight.w500,
@@ -139,13 +139,13 @@ class AppTheme {
         ),
       ),
       switchTheme: SwitchThemeData(
-        thumbColor: MaterialStateProperty.resolveWith(
+        thumbColor: WidgetStateProperty.resolveWith(
           (states) =>
-              states.contains(MaterialState.selected) ? accent : textMuted,
+              states.contains(WidgetState.selected) ? accent : textMuted,
         ),
-        trackColor: MaterialStateProperty.resolveWith(
+        trackColor: WidgetStateProperty.resolveWith(
           (states) =>
-              states.contains(MaterialState.selected)
+              states.contains(WidgetState.selected)
                   ? accentSoft
                   : surfaceElevated,
         ),
@@ -153,3 +153,4 @@ class AppTheme {
     );
   }
 }
+

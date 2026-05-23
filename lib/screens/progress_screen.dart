@@ -94,14 +94,14 @@ class ProgressScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    AppTheme.accent.withOpacity(0.15),
-                    AppTheme.accentGlow.withOpacity(0.05),
+                    AppTheme.accent.withValues(alpha: 0.15),
+                    AppTheme.accentGlow.withValues(alpha: 0.05),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: AppTheme.accent.withOpacity(0.3)),
+                border: Border.all(color: AppTheme.accent.withValues(alpha: 0.3)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -339,7 +339,7 @@ class ProgressScreen extends StatelessWidget {
                           ),
                           belowBarData: BarAreaData(
                             show: true,
-                            color: AppTheme.pomodoroWork.withOpacity(0.1),
+                            color: AppTheme.pomodoroWork.withValues(alpha: 0.1),
                           ),
                         ),
                       ],
@@ -377,7 +377,7 @@ class _StatBox extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppTheme.surface,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: color.withOpacity(0.3)),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -442,3 +442,4 @@ class _WeekStat extends StatelessWidget {
     );
   }
 }
+

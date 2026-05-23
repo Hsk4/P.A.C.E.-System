@@ -124,7 +124,7 @@ class _AlarmCard extends StatelessWidget {
         border: Border.all(
           color:
               alarm.isEnabled
-                  ? AppTheme.info.withOpacity(0.3)
+                  ? AppTheme.info.withValues(alpha: 0.3)
                   : AppTheme.border,
         ),
       ),
@@ -333,9 +333,9 @@ class _AddAlarmSheetState extends State<_AddAlarmSheet> {
                 width: double.infinity,
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: AppTheme.info.withOpacity(0.1),
+                  color: AppTheme.info.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: AppTheme.info.withOpacity(0.3)),
+                  border: Border.all(color: AppTheme.info.withValues(alpha: 0.3)),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -574,3 +574,4 @@ class _AddAlarmSheetState extends State<_AddAlarmSheet> {
     super.dispose();
   }
 }
+

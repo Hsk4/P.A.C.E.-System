@@ -126,14 +126,14 @@ class DashboardScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    AppTheme.accent.withOpacity(0.2),
-                    AppTheme.accentGlow.withOpacity(0.05),
+                    AppTheme.accent.withValues(alpha: 0.2),
+                    AppTheme.accentGlow.withValues(alpha: 0.05),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: AppTheme.accent.withOpacity(0.3)),
+                border: Border.all(color: AppTheme.accent.withValues(alpha: 0.3)),
               ),
               child: Row(
                 children: [
@@ -312,3 +312,4 @@ class _EmptyTasks extends StatelessWidget {
     );
   }
 }
+
