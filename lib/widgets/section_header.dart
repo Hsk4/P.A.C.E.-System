@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../utils/app_theme.dart';
 
 class SectionHeader extends StatelessWidget {
@@ -21,7 +20,7 @@ class SectionHeader extends StatelessWidget {
       children: [
         Text(
           title,
-          style: GoogleFonts.spaceGrotesk(
+          style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
             color: AppTheme.textPrimary,
@@ -32,7 +31,7 @@ class SectionHeader extends StatelessWidget {
             onTap: onAction,
             child: Text(
               action!,
-              style: GoogleFonts.spaceGrotesk(
+              style: TextStyle(
                 fontSize: 13,
                 color: AppTheme.accent,
                 fontWeight: FontWeight.w600,

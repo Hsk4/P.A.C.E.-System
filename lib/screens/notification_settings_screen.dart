@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 
 import '../services/notification_service.dart';
@@ -67,7 +66,7 @@ class _NotificationSettingsScreenState
       appBar: AppBar(
         title: Text(
           'Notifications',
-          style: GoogleFonts.spaceGrotesk(
+          style: TextStyle(
             fontWeight: FontWeight.w600,
             color: AppTheme.textPrimary,
           ),
@@ -179,7 +178,7 @@ class _NotificationSettingsScreenState
       children: [
         Text(
           title,
-          style: GoogleFonts.spaceGrotesk(
+          style: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w600,
             color: AppTheme.textMuted,
@@ -243,7 +242,7 @@ class _ToggleRow extends StatelessWidget {
               children: [
                 Text(
                   label,
-                  style: GoogleFonts.spaceGrotesk(
+                  style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                     color: AppTheme.textPrimary,
@@ -251,7 +250,7 @@ class _ToggleRow extends StatelessWidget {
                 ),
                 Text(
                   subtitle,
-                  style: GoogleFonts.spaceGrotesk(
+                  style: TextStyle(
                     fontSize: 12,
                     color: AppTheme.textSecondary,
                   ),
@@ -297,14 +296,14 @@ class _TimeRow extends StatelessWidget {
           children: [
             Text(
               label,
-              style: GoogleFonts.spaceGrotesk(
+              style: TextStyle(
                 fontSize: 13,
                 color: AppTheme.textSecondary,
               ),
             ),
             Text(
               '${h.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')} $period',
-              style: GoogleFonts.spaceGrotesk(
+              style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.w700,
                 color: AppTheme.accent,

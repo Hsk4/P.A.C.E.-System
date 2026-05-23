@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +22,7 @@ class TaskTile extends StatelessWidget {
         padding: const EdgeInsets.only(right: 20),
         margin: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
-          color: AppTheme.danger.withValues(alpha: 0.15),
+          color: AppTheme.danger.withOpacity(0.15),
           borderRadius: BorderRadius.circular(14),
         ),
         child: const Icon(Icons.delete_outline, color: AppTheme.danger),
@@ -42,7 +41,7 @@ class TaskTile extends StatelessWidget {
               color:
                   task.isCompleted
                       ? AppTheme.border
-                      : _priorityColor(task.priority).withValues(alpha: 0.25),
+                      : _priorityColor(task.priority).withOpacity(0.25),
             ),
           ),
           child: Row(
@@ -85,7 +84,7 @@ class TaskTile extends StatelessWidget {
                   children: [
                     Text(
                       task.title,
-                      style: GoogleFonts.spaceGrotesk(
+                      style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                         color:
@@ -106,7 +105,7 @@ class TaskTile extends StatelessWidget {
                         task.description!,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.spaceGrotesk(
+                        style: TextStyle(
                           fontSize: 12,
                           color: AppTheme.textMuted,
                         ),
@@ -126,7 +125,7 @@ class TaskTile extends StatelessWidget {
                             DateFormat(
                               'MMM d, h:mm a',
                             ).format(task.scheduledAt!),
-                            style: GoogleFonts.spaceGrotesk(
+                            style: TextStyle(
                               fontSize: 11,
                               color: AppTheme.textMuted,
                             ),
@@ -173,18 +172,18 @@ class TaskTile extends StatelessWidget {
             backgroundColor: AppTheme.surface,
             title: Text(
               'Delete task?',
-              style: GoogleFonts.spaceGrotesk(color: AppTheme.textPrimary),
+              style: TextStyle(color: AppTheme.textPrimary),
             ),
             content: Text(
               'This cannot be undone.',
-              style: GoogleFonts.spaceGrotesk(color: AppTheme.textSecondary),
+              style: TextStyle(color: AppTheme.textSecondary),
             ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(ctx, false),
                 child: Text(
                   'Cancel',
-                  style: GoogleFonts.spaceGrotesk(
+                  style: TextStyle(
                     color: AppTheme.textSecondary,
                   ),
                 ),
@@ -193,7 +192,7 @@ class TaskTile extends StatelessWidget {
                 onPressed: () => Navigator.pop(ctx, true),
                 child: Text(
                   'Delete',
-                  style: GoogleFonts.spaceGrotesk(color: AppTheme.danger),
+                  style: TextStyle(color: AppTheme.danger),
                 ),
               ),
             ],
@@ -223,7 +222,7 @@ class TaskTile extends StatelessWidget {
                   ),
                   title: Text(
                     task.isCompleted ? 'Mark as pending' : 'Mark as complete',
-                    style: GoogleFonts.spaceGrotesk(
+                    style: TextStyle(
                       color: AppTheme.textPrimary,
                     ),
                   ),
@@ -239,7 +238,7 @@ class TaskTile extends StatelessWidget {
                   ),
                   title: Text(
                     'Delete task',
-                    style: GoogleFonts.spaceGrotesk(color: AppTheme.danger),
+                    style: TextStyle(color: AppTheme.danger),
                   ),
                   onTap: () {
                     context.read<TaskProvider>().deleteTask(task.id);
@@ -268,12 +267,12 @@ class _CategoryBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.15),
+        color: color.withOpacity(0.15),
         borderRadius: BorderRadius.circular(6),
       ),
       child: Text(
         '$emoji $category',
-        style: GoogleFonts.spaceGrotesk(
+        style: TextStyle(
           fontSize: 9,
           color: color,
           fontWeight: FontWeight.w600,
@@ -305,7 +304,7 @@ class _PriorityDot extends StatelessWidget {
         const SizedBox(width: 3),
         Text(
           label,
-          style: GoogleFonts.spaceGrotesk(
+          style: TextStyle(
             fontSize: 9,
             color: color,
             fontWeight: FontWeight.w600,

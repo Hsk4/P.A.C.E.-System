@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -38,7 +37,7 @@ class _TasksScreenState extends State<TasksScreen> {
         icon: const Icon(Icons.add, color: Colors.white),
         label: Text(
           'Add Task',
-          style: GoogleFonts.spaceGrotesk(
+          style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w600,
           ),
@@ -52,7 +51,7 @@ class _TasksScreenState extends State<TasksScreen> {
       padding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       child: Text(
         '✅ Tasks',
-        style: GoogleFonts.spaceGrotesk(
+        style: TextStyle(
           fontSize: 26,
           fontWeight: FontWeight.w700,
           color: AppTheme.textPrimary,
@@ -124,7 +123,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 const SizedBox(height: 12),
                 Text(
                   'No tasks here',
-                  style: GoogleFonts.spaceGrotesk(
+                  style: TextStyle(
                     color: AppTheme.textSecondary,
                     fontSize: 15,
                   ),
@@ -186,7 +185,7 @@ class _FilterChip extends StatelessWidget {
         ),
         child: Text(
           label,
-          style: GoogleFonts.spaceGrotesk(
+          style: TextStyle(
             fontSize: 13,
             fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
             color: isActive ? Colors.white : AppTheme.textSecondary,
@@ -237,7 +236,7 @@ class _AddTaskSheetState extends State<_AddTaskSheet> {
           children: [
             Text(
               'New Task',
-              style: GoogleFonts.spaceGrotesk(
+              style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
                 color: AppTheme.textPrimary,
@@ -246,7 +245,7 @@ class _AddTaskSheetState extends State<_AddTaskSheet> {
             const SizedBox(height: 20),
             TextField(
               controller: _titleController,
-              style: GoogleFonts.spaceGrotesk(color: AppTheme.textPrimary),
+              style: TextStyle(color: AppTheme.textPrimary),
               decoration: const InputDecoration(
                 labelText: 'Task title *',
                 hintText: 'What do you need to do?',
@@ -256,7 +255,7 @@ class _AddTaskSheetState extends State<_AddTaskSheet> {
             const SizedBox(height: 12),
             TextField(
               controller: _descController,
-              style: GoogleFonts.spaceGrotesk(color: AppTheme.textPrimary),
+              style: TextStyle(color: AppTheme.textPrimary),
               decoration: const InputDecoration(
                 labelText: 'Description (optional)',
               ),
@@ -265,7 +264,7 @@ class _AddTaskSheetState extends State<_AddTaskSheet> {
             const SizedBox(height: 16),
             Text(
               'Category',
-              style: GoogleFonts.spaceGrotesk(
+              style: TextStyle(
                 fontSize: 13,
                 color: AppTheme.textSecondary,
               ),
@@ -285,7 +284,7 @@ class _AddTaskSheetState extends State<_AddTaskSheet> {
                           decoration: BoxDecoration(
                             color:
                                 isActive
-                                    ? cat.$3.withValues(alpha: 0.2)
+                                    ? cat.$3.withOpacity(0.2)
                                     : AppTheme.surfaceElevated,
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
@@ -300,7 +299,7 @@ class _AddTaskSheetState extends State<_AddTaskSheet> {
                               ),
                               Text(
                                 cat.$1,
-                                style: GoogleFonts.spaceGrotesk(
+                                style: TextStyle(
                                   fontSize: 10,
                                   color: isActive ? cat.$3 : AppTheme.textMuted,
                                 ),
@@ -315,7 +314,7 @@ class _AddTaskSheetState extends State<_AddTaskSheet> {
             const SizedBox(height: 16),
             Text(
               'Priority',
-              style: GoogleFonts.spaceGrotesk(
+              style: TextStyle(
                 fontSize: 13,
                 color: AppTheme.textSecondary,
               ),
@@ -372,7 +371,7 @@ class _AddTaskSheetState extends State<_AddTaskSheet> {
                             'MMM d, yyyy  h:mm a',
                           ).format(_scheduledAt!)
                           : 'Set date & time',
-                      style: GoogleFonts.spaceGrotesk(
+                      style: TextStyle(
                         fontSize: 14,
                         color:
                             _scheduledAt != null
@@ -400,7 +399,7 @@ class _AddTaskSheetState extends State<_AddTaskSheet> {
               children: [
                 Text(
                   'Enable notification',
-                  style: GoogleFonts.spaceGrotesk(
+                  style: TextStyle(
                     fontSize: 14,
                     color: AppTheme.textSecondary,
                   ),
@@ -514,14 +513,14 @@ class _PriorityBtn extends StatelessWidget {
           duration: const Duration(milliseconds: 200),
           padding: const EdgeInsets.symmetric(vertical: 8),
           decoration: BoxDecoration(
-            color: isActive ? color.withValues(alpha: 0.2) : AppTheme.surfaceElevated,
+            color: isActive ? color.withOpacity(0.2) : AppTheme.surfaceElevated,
             borderRadius: BorderRadius.circular(10),
             border: Border.all(color: isActive ? color : AppTheme.border),
           ),
           child: Center(
             child: Text(
               label,
-              style: GoogleFonts.spaceGrotesk(
+              style: TextStyle(
                 fontSize: 13,
                 fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
                 color: isActive ? color : AppTheme.textSecondary,

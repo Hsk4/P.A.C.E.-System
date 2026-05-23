@@ -1,6 +1,5 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../models/alarm_model.dart';
@@ -22,7 +21,7 @@ class AlarmScreen extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
               child: Text(
                 '⏰ Alarms',
-                style: GoogleFonts.spaceGrotesk(
+                style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.w700,
                   color: AppTheme.textPrimary,
@@ -36,7 +35,7 @@ class AlarmScreen extends StatelessWidget {
                 builder:
                     (_, p, __) => Text(
                       p.getNextAlarmText(),
-                      style: GoogleFonts.spaceGrotesk(
+                      style: TextStyle(
                         fontSize: 13,
                         color: AppTheme.textSecondary,
                       ),
@@ -60,7 +59,7 @@ class AlarmScreen extends StatelessWidget {
                           const SizedBox(height: 12),
                           Text(
                             'No alarms set',
-                            style: GoogleFonts.spaceGrotesk(
+                            style: TextStyle(
                               color: AppTheme.textSecondary,
                               fontSize: 15,
                             ),
@@ -87,7 +86,7 @@ class AlarmScreen extends StatelessWidget {
         icon: const Icon(Icons.add_alarm, color: Colors.white),
         label: Text(
           'Add Alarm',
-          style: GoogleFonts.spaceGrotesk(
+          style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w600,
           ),
@@ -125,7 +124,7 @@ class _AlarmCard extends StatelessWidget {
         border: Border.all(
           color:
               alarm.isEnabled
-                  ? AppTheme.info.withValues(alpha: 0.3)
+                  ? AppTheme.info.withOpacity(0.3)
                   : AppTheme.border,
         ),
       ),
@@ -139,7 +138,7 @@ class _AlarmCard extends StatelessWidget {
                   children: [
                     Text(
                       alarm.displayHour,
-                      style: GoogleFonts.spaceGrotesk(
+                      style: TextStyle(
                         fontSize: 40,
                         fontWeight: FontWeight.w700,
                         color:
@@ -155,7 +154,7 @@ class _AlarmCard extends StatelessWidget {
                       children: [
                         Text(
                           ':${alarm.minute.toString().padLeft(2, '0')}',
-                          style: GoogleFonts.spaceGrotesk(
+                          style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.w700,
                             color:
@@ -166,7 +165,7 @@ class _AlarmCard extends StatelessWidget {
                         ),
                         Text(
                           alarm.periodString,
-                          style: GoogleFonts.spaceGrotesk(
+                          style: TextStyle(
                             fontSize: 13,
                             color:
                                 alarm.isEnabled
@@ -182,7 +181,7 @@ class _AlarmCard extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   alarm.label,
-                  style: GoogleFonts.spaceGrotesk(
+                  style: TextStyle(
                     fontSize: 14,
                     color:
                         alarm.isEnabled
@@ -197,7 +196,7 @@ class _AlarmCard extends StatelessWidget {
                     const SizedBox(width: 4),
                     Text(
                       alarm.repeatLabel,
-                      style: GoogleFonts.spaceGrotesk(
+                      style: TextStyle(
                         fontSize: 11,
                         color: AppTheme.textMuted,
                       ),
@@ -212,7 +211,7 @@ class _AlarmCard extends StatelessWidget {
                       const SizedBox(width: 4),
                       Text(
                         alarm.ringtoneName,
-                        style: GoogleFonts.spaceGrotesk(
+                        style: TextStyle(
                           fontSize: 11,
                           color: AppTheme.textMuted,
                         ),
@@ -250,18 +249,18 @@ class _AlarmCard extends StatelessWidget {
             backgroundColor: AppTheme.surface,
             title: Text(
               'Delete alarm?',
-              style: GoogleFonts.spaceGrotesk(color: AppTheme.textPrimary),
+              style: TextStyle(color: AppTheme.textPrimary),
             ),
             content: Text(
               'This alarm will be permanently removed.',
-              style: GoogleFonts.spaceGrotesk(color: AppTheme.textSecondary),
+              style: TextStyle(color: AppTheme.textSecondary),
             ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(ctx),
                 child: Text(
                   'Cancel',
-                  style: GoogleFonts.spaceGrotesk(
+                  style: TextStyle(
                     color: AppTheme.textSecondary,
                   ),
                 ),
@@ -273,7 +272,7 @@ class _AlarmCard extends StatelessWidget {
                 },
                 child: Text(
                   'Delete',
-                  style: GoogleFonts.spaceGrotesk(color: AppTheme.danger),
+                  style: TextStyle(color: AppTheme.danger),
                 ),
               ),
             ],
@@ -320,7 +319,7 @@ class _AddAlarmSheetState extends State<_AddAlarmSheet> {
           children: [
             Text(
               'New Alarm',
-              style: GoogleFonts.spaceGrotesk(
+              style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
                 color: AppTheme.textPrimary,
@@ -334,16 +333,16 @@ class _AddAlarmSheetState extends State<_AddAlarmSheet> {
                 width: double.infinity,
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: AppTheme.info.withValues(alpha: 0.1),
+                  color: AppTheme.info.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: AppTheme.info.withValues(alpha: 0.3)),
+                  border: Border.all(color: AppTheme.info.withOpacity(0.3)),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       '${displayHour.toString().padLeft(2, '0')}:${_minute.toString().padLeft(2, '0')}',
-                      style: GoogleFonts.spaceGrotesk(
+                      style: TextStyle(
                         fontSize: 48,
                         fontWeight: FontWeight.w700,
                         color: AppTheme.textPrimary,
@@ -353,7 +352,7 @@ class _AddAlarmSheetState extends State<_AddAlarmSheet> {
                     const SizedBox(width: 8),
                     Text(
                       period,
-                      style: GoogleFonts.spaceGrotesk(
+                      style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                         color: AppTheme.info,
@@ -366,13 +365,13 @@ class _AddAlarmSheetState extends State<_AddAlarmSheet> {
             const SizedBox(height: 16),
             TextField(
               controller: _labelController,
-              style: GoogleFonts.spaceGrotesk(color: AppTheme.textPrimary),
+              style: TextStyle(color: AppTheme.textPrimary),
               decoration: const InputDecoration(labelText: 'Label'),
             ),
             const SizedBox(height: 16),
             Text(
               'Repeat',
-              style: GoogleFonts.spaceGrotesk(
+              style: TextStyle(
                 fontSize: 13,
                 color: AppTheme.textSecondary,
               ),
@@ -404,7 +403,7 @@ class _AddAlarmSheetState extends State<_AddAlarmSheet> {
                     child: Center(
                       child: Text(
                         _dayLabels[i],
-                        style: GoogleFonts.spaceGrotesk(
+                        style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
                           color:
@@ -439,7 +438,7 @@ class _AddAlarmSheetState extends State<_AddAlarmSheet> {
                     Expanded(
                       child: Text(
                         _ringtoneName,
-                        style: GoogleFonts.spaceGrotesk(
+                        style: TextStyle(
                           fontSize: 14,
                           color: AppTheme.textPrimary,
                         ),
@@ -447,7 +446,7 @@ class _AddAlarmSheetState extends State<_AddAlarmSheet> {
                     ),
                     Text(
                       'Change',
-                      style: GoogleFonts.spaceGrotesk(
+                      style: TextStyle(
                         fontSize: 12,
                         color: AppTheme.accent,
                         fontWeight: FontWeight.w600,
@@ -463,7 +462,7 @@ class _AddAlarmSheetState extends State<_AddAlarmSheet> {
               children: [
                 Text(
                   'Vibrate',
-                  style: GoogleFonts.spaceGrotesk(
+                  style: TextStyle(
                     fontSize: 14,
                     color: AppTheme.textSecondary,
                   ),
@@ -479,7 +478,7 @@ class _AddAlarmSheetState extends State<_AddAlarmSheet> {
               children: [
                 Text(
                   'Volume',
-                  style: GoogleFonts.spaceGrotesk(
+                  style: TextStyle(
                     fontSize: 13,
                     color: AppTheme.textSecondary,
                   ),
@@ -497,7 +496,7 @@ class _AddAlarmSheetState extends State<_AddAlarmSheet> {
                 ),
                 Text(
                   '$_volume%',
-                  style: GoogleFonts.spaceGrotesk(
+                  style: TextStyle(
                     fontSize: 12,
                     color: AppTheme.textMuted,
                   ),

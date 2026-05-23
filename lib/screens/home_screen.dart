@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../utils/app_theme.dart';
 import 'dashboard_screen.dart';
@@ -93,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 2),
             Text(
               label,
-              style: GoogleFonts.spaceGrotesk(
+              style: TextStyle(
                 fontSize: 9,
                 fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
                 color: isActive ? AppTheme.accent : AppTheme.textMuted,
@@ -129,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 2),
             Text(
               'Settings',
-              style: GoogleFonts.spaceGrotesk(
+              style: TextStyle(
                 fontSize: 9,
                 color: AppTheme.textMuted,
               ),

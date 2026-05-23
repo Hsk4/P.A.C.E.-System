@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 
 import '../utils/app_theme.dart';
@@ -30,7 +29,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       appBar: AppBar(
         title: Text(
           'Settings',
-          style: GoogleFonts.spaceGrotesk(
+          style: TextStyle(
             fontWeight: FontWeight.w600,
             color: AppTheme.textPrimary,
           ),
@@ -51,7 +50,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 label: 'Your name',
                 trailing: Text(
                   _name,
-                  style: GoogleFonts.spaceGrotesk(color: AppTheme.accent),
+                  style: TextStyle(color: AppTheme.accent),
                 ),
                 onTap: () => _editName(context),
               ),
@@ -92,7 +91,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             child: Text(
               'Schedulr v1.0.0\nBuilt with Flutter ❤️',
               textAlign: TextAlign.center,
-              style: GoogleFonts.spaceGrotesk(
+              style: TextStyle(
                 fontSize: 12,
                 color: AppTheme.textMuted,
               ),
@@ -109,7 +108,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       children: [
         Text(
           title,
-          style: GoogleFonts.spaceGrotesk(
+          style: TextStyle(
             fontSize: 11,
             fontWeight: FontWeight.w600,
             color: AppTheme.textMuted,
@@ -138,11 +137,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
             backgroundColor: AppTheme.surface,
             title: Text(
               'Your name',
-              style: GoogleFonts.spaceGrotesk(color: AppTheme.textPrimary),
+              style: TextStyle(color: AppTheme.textPrimary),
             ),
             content: TextField(
               controller: ctrl,
-              style: GoogleFonts.spaceGrotesk(color: AppTheme.textPrimary),
+              style: TextStyle(color: AppTheme.textPrimary),
               decoration: const InputDecoration(hintText: 'Enter your name'),
               autofocus: true,
             ),
@@ -151,7 +150,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onPressed: () => Navigator.pop(ctx),
                 child: Text(
                   'Cancel',
-                  style: GoogleFonts.spaceGrotesk(
+                  style: TextStyle(
                     color: AppTheme.textSecondary,
                   ),
                 ),
@@ -166,7 +165,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 },
                 child: Text(
                   'Save',
-                  style: GoogleFonts.spaceGrotesk(color: AppTheme.accent),
+                  style: TextStyle(color: AppTheme.accent),
                 ),
               ),
             ],
@@ -182,18 +181,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
             backgroundColor: AppTheme.surface,
             title: Text(
               'Clear all data?',
-              style: GoogleFonts.spaceGrotesk(color: AppTheme.textPrimary),
+              style: TextStyle(color: AppTheme.textPrimary),
             ),
             content: Text(
               'This will permanently delete all tasks, alarms, and Pomodoro history.',
-              style: GoogleFonts.spaceGrotesk(color: AppTheme.textSecondary),
+              style: TextStyle(color: AppTheme.textSecondary),
             ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(ctx),
                 child: Text(
                   'Cancel',
-                  style: GoogleFonts.spaceGrotesk(
+                  style: TextStyle(
                     color: AppTheme.textSecondary,
                   ),
                 ),
@@ -208,7 +207,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     SnackBar(
                       content: Text(
                         'All data cleared',
-                        style: GoogleFonts.spaceGrotesk(),
+                        style: TextStyle(),
                       ),
                       backgroundColor: AppTheme.danger,
                     ),
@@ -216,7 +215,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 },
                 child: Text(
                   'Clear',
-                  style: GoogleFonts.spaceGrotesk(color: AppTheme.danger),
+                  style: TextStyle(color: AppTheme.danger),
                 ),
               ),
             ],
@@ -249,7 +248,7 @@ class _SettingsTile extends StatelessWidget {
       leading: Icon(icon, color: iconColor ?? AppTheme.textSecondary, size: 20),
       title: Text(
         label,
-        style: GoogleFonts.spaceGrotesk(
+        style: TextStyle(
           fontSize: 14,
           color: labelColor ?? AppTheme.textPrimary,
           fontWeight: FontWeight.w500,

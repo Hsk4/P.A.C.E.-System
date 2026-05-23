@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   // ── Brand Colors ──────────────────────────────────────
@@ -39,8 +38,7 @@ class AppTheme {
         onPrimary: Colors.white,
         onSurface: textPrimary,
       ),
-      textTheme: GoogleFonts.spaceGroteskTextTheme(
-        const TextTheme(
+      textTheme: const TextTheme(
           displayLarge: TextStyle(
             fontSize: 48,
             fontWeight: FontWeight.w700,
@@ -89,7 +87,6 @@ class AppTheme {
             color: textPrimary,
             letterSpacing: 0.5,
           ),
-        ),
       ),
       appBarTheme: const AppBarTheme(
         backgroundColor: bg,
@@ -100,8 +97,8 @@ class AppTheme {
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: surface,
         indicatorColor: accentSoft,
-        labelTextStyle: WidgetStateProperty.all(
-          GoogleFonts.spaceGrotesk(
+        labelTextStyle: MaterialStateProperty.all(
+          TextStyle(
             fontSize: 11,
             fontWeight: FontWeight.w500,
             color: textSecondary,
@@ -135,20 +132,20 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          textStyle: GoogleFonts.spaceGrotesk(
+          textStyle: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w600,
           ),
         ),
       ),
       switchTheme: SwitchThemeData(
-        thumbColor: WidgetStateProperty.resolveWith(
+        thumbColor: MaterialStateProperty.resolveWith(
           (states) =>
-              states.contains(WidgetState.selected) ? accent : textMuted,
+              states.contains(MaterialState.selected) ? accent : textMuted,
         ),
-        trackColor: WidgetStateProperty.resolveWith(
+        trackColor: MaterialStateProperty.resolveWith(
           (states) =>
-              states.contains(WidgetState.selected)
+              states.contains(MaterialState.selected)
                   ? accentSoft
                   : surfaceElevated,
         ),

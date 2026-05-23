@@ -1,6 +1,5 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -36,7 +35,7 @@ class ProgressScreen extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
         child: Text(
           '📊 Progress',
-          style: GoogleFonts.spaceGrotesk(
+          style: TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.w700,
             color: AppTheme.textPrimary,
@@ -95,21 +94,21 @@ class ProgressScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    AppTheme.accent.withValues(alpha: 0.15),
-                    AppTheme.accentGlow.withValues(alpha: 0.05),
+                    AppTheme.accent.withOpacity(0.15),
+                    AppTheme.accentGlow.withOpacity(0.05),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: AppTheme.accent.withValues(alpha: 0.3)),
+                border: Border.all(color: AppTheme.accent.withOpacity(0.3)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     'This Week',
-                    style: GoogleFonts.spaceGrotesk(
+                    style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
                       color: AppTheme.textPrimary,
@@ -156,7 +155,7 @@ class ProgressScreen extends StatelessWidget {
               children: [
                 Text(
                   'Task Completion (7 days)',
-                  style: GoogleFonts.spaceGrotesk(
+                  style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: AppTheme.textPrimary,
@@ -198,7 +197,7 @@ class ProgressScreen extends StatelessWidget {
                               final day = data[i]['day'] as DateTime;
                               return Text(
                                 DateFormat('E').format(day)[0],
-                                style: GoogleFonts.spaceGrotesk(
+                                style: TextStyle(
                                   fontSize: 11,
                                   color: AppTheme.textMuted,
                                 ),
@@ -255,7 +254,7 @@ class ProgressScreen extends StatelessWidget {
               children: [
                 Text(
                   'Pomodoro Sessions (7 days)',
-                  style: GoogleFonts.spaceGrotesk(
+                  style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: AppTheme.textPrimary,
@@ -304,7 +303,7 @@ class ProgressScreen extends StatelessWidget {
                                 DateFormat(
                                   'E',
                                 ).format(data[i]['day'] as DateTime)[0],
-                                style: GoogleFonts.spaceGrotesk(
+                                style: TextStyle(
                                   fontSize: 11,
                                   color: AppTheme.textMuted,
                                 ),
@@ -340,7 +339,7 @@ class ProgressScreen extends StatelessWidget {
                           ),
                           belowBarData: BarAreaData(
                             show: true,
-                            color: AppTheme.pomodoroWork.withValues(alpha: 0.1),
+                            color: AppTheme.pomodoroWork.withOpacity(0.1),
                           ),
                         ),
                       ],
@@ -378,7 +377,7 @@ class _StatBox extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppTheme.surface,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: color.withValues(alpha: 0.3)),
+        border: Border.all(color: color.withOpacity(0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -387,7 +386,7 @@ class _StatBox extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             value,
-            style: GoogleFonts.spaceGrotesk(
+            style: TextStyle(
               fontSize: 32,
               fontWeight: FontWeight.w700,
               color: color,
@@ -395,7 +394,7 @@ class _StatBox extends StatelessWidget {
           ),
           Text(
             unit,
-            style: GoogleFonts.spaceGrotesk(
+            style: TextStyle(
               fontSize: 11,
               color: AppTheme.textMuted,
             ),
@@ -403,7 +402,7 @@ class _StatBox extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             label,
-            style: GoogleFonts.spaceGrotesk(
+            style: TextStyle(
               fontSize: 12,
               color: AppTheme.textSecondary,
             ),
@@ -426,7 +425,7 @@ class _WeekStat extends StatelessWidget {
       children: [
         Text(
           value,
-          style: GoogleFonts.spaceGrotesk(
+          style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w700,
             color: AppTheme.textPrimary,
@@ -434,7 +433,7 @@ class _WeekStat extends StatelessWidget {
         ),
         Text(
           label,
-          style: GoogleFonts.spaceGrotesk(
+          style: TextStyle(
             fontSize: 10,
             color: AppTheme.textSecondary,
           ),

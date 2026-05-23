@@ -1,6 +1,5 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/pomodoro_provider.dart';
@@ -53,7 +52,7 @@ class PomodoroScreen extends StatelessWidget {
         children: [
           Text(
             '🍅 Focus',
-            style: GoogleFonts.spaceGrotesk(
+            style: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.w700,
               color: AppTheme.textPrimary,
@@ -120,7 +119,7 @@ class _PhasePill extends StatelessWidget {
         duration: const Duration(milliseconds: 250),
         padding: const EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(
-          color: isActive ? color.withValues(alpha: 0.2) : AppTheme.surface,
+          color: isActive ? color.withOpacity(0.2) : AppTheme.surface,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: isActive ? color : AppTheme.border,
@@ -130,7 +129,7 @@ class _PhasePill extends StatelessWidget {
         child: Center(
           child: Text(
             label,
-            style: GoogleFonts.spaceGrotesk(
+            style: TextStyle(
               fontSize: 12,
               fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
               color: isActive ? color : AppTheme.textSecondary,
@@ -167,7 +166,7 @@ class _TimerRing extends StatelessWidget {
                 children: [
                   Text(
                     pomo.timeDisplay,
-                    style: GoogleFonts.spaceGrotesk(
+                    style: TextStyle(
                       fontSize: 56,
                       fontWeight: FontWeight.w700,
                       color: AppTheme.textPrimary,
@@ -176,7 +175,7 @@ class _TimerRing extends StatelessWidget {
                   ),
                   Text(
                     pomo.phaseLabel,
-                    style: GoogleFonts.spaceGrotesk(
+                    style: TextStyle(
                       fontSize: 14,
                       color: color,
                       fontWeight: FontWeight.w500,
@@ -250,7 +249,7 @@ class _RingPainter extends CustomPainter {
     if (state == PomodoroState.running) {
       final glowPaint =
           Paint()
-            ..color = color.withValues(alpha: 0.15)
+            ..color = color.withOpacity(0.15)
             ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 16);
       canvas.drawCircle(center, radius - 4, glowPaint);
     }
@@ -294,7 +293,7 @@ class _Controls extends StatelessWidget {
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: AppTheme.pomodoroWork.withValues(alpha: 0.4),
+                      color: AppTheme.pomodoroWork.withOpacity(0.4),
                       blurRadius: 20,
                       spreadRadius: 2,
                     ),
@@ -374,7 +373,7 @@ class _LinkedTask extends StatelessWidget {
               Expanded(
                 child: Text(
                   pomo.linkedTaskTitle ?? 'No task linked',
-                  style: GoogleFonts.spaceGrotesk(
+                  style: TextStyle(
                     fontSize: 14,
                     color:
                         pomo.linkedTaskTitle != null
@@ -387,7 +386,7 @@ class _LinkedTask extends StatelessWidget {
                 onTap: () => _showTaskPicker(context, pomo, tasks),
                 child: Text(
                   'Change',
-                  style: GoogleFonts.spaceGrotesk(
+                  style: TextStyle(
                     fontSize: 12,
                     color: AppTheme.accent,
                     fontWeight: FontWeight.w600,
@@ -422,7 +421,7 @@ class _LinkedTask extends StatelessWidget {
             children: [
               Text(
                 'Link a Task',
-                style: GoogleFonts.spaceGrotesk(
+                style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: AppTheme.textPrimary,
@@ -435,7 +434,7 @@ class _LinkedTask extends StatelessWidget {
                 leading: const Icon(Icons.clear, color: AppTheme.textSecondary),
                 title: Text(
                   'No task',
-                  style: GoogleFonts.spaceGrotesk(
+                  style: TextStyle(
                     color: AppTheme.textSecondary,
                   ),
                 ),
@@ -454,7 +453,7 @@ class _LinkedTask extends StatelessWidget {
                   ),
                   title: Text(
                     t.title,
-                    style: GoogleFonts.spaceGrotesk(
+                    style: TextStyle(
                       color: AppTheme.textPrimary,
                     ),
                   ),
@@ -520,7 +519,7 @@ class _SettingsCard extends StatelessWidget {
                 children: [
                   Text(
                     'Timer Settings',
-                    style: GoogleFonts.spaceGrotesk(
+                    style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
                       color: AppTheme.textPrimary,
@@ -530,7 +529,7 @@ class _SettingsCard extends StatelessWidget {
                     onTap: () => _showSettings(context, pomo),
                     child: Text(
                       'Edit',
-                      style: GoogleFonts.spaceGrotesk(
+                      style: TextStyle(
                         fontSize: 13,
                         color: AppTheme.accent,
                         fontWeight: FontWeight.w600,
@@ -591,7 +590,7 @@ class _SettingsCard extends StatelessWidget {
                     children: [
                       Text(
                         'Pomodoro Settings',
-                        style: GoogleFonts.spaceGrotesk(
+                        style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
                           color: AppTheme.textPrimary,
@@ -668,7 +667,7 @@ class _DurationRow extends StatelessWidget {
         children: [
           Text(
             label,
-            style: GoogleFonts.spaceGrotesk(
+            style: TextStyle(
               color: AppTheme.textSecondary,
               fontSize: 14,
             ),
@@ -685,7 +684,7 @@ class _DurationRow extends StatelessWidget {
                 child: Center(
                   child: Text(
                     '$value',
-                    style: GoogleFonts.spaceGrotesk(
+                    style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                       color: AppTheme.textPrimary,
@@ -726,7 +725,7 @@ class _SettingChip extends StatelessWidget {
         children: [
           Text(
             label,
-            style: GoogleFonts.spaceGrotesk(
+            style: TextStyle(
               fontSize: 11,
               color: AppTheme.textSecondary,
             ),
@@ -734,7 +733,7 @@ class _SettingChip extends StatelessWidget {
           const SizedBox(width: 6),
           Text(
             value,
-            style: GoogleFonts.spaceGrotesk(
+            style: TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.w700,
               color: AppTheme.textPrimary,

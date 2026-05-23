@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
@@ -48,7 +47,7 @@ class DashboardScreen extends StatelessWidget {
           children: [
             Text(
               '$greeting, Hammad 👋',
-              style: GoogleFonts.spaceGrotesk(
+              style: TextStyle(
                 fontSize: 26,
                 fontWeight: FontWeight.w700,
                 color: AppTheme.textPrimary,
@@ -57,7 +56,7 @@ class DashboardScreen extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               DateFormat('EEEE, MMMM d').format(now),
-              style: GoogleFonts.spaceGrotesk(
+              style: TextStyle(
                 fontSize: 14,
                 color: AppTheme.textSecondary,
               ),
@@ -127,14 +126,14 @@ class DashboardScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    AppTheme.accent.withValues(alpha: 0.2),
-                    AppTheme.accentGlow.withValues(alpha: 0.05),
+                    AppTheme.accent.withOpacity(0.2),
+                    AppTheme.accentGlow.withOpacity(0.05),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: AppTheme.accent.withValues(alpha: 0.3)),
+                border: Border.all(color: AppTheme.accent.withOpacity(0.3)),
               ),
               child: Row(
                 children: [
@@ -144,7 +143,7 @@ class DashboardScreen extends StatelessWidget {
                     percent: rate,
                     center: Text(
                       '${(rate * 100).toInt()}%',
-                      style: GoogleFonts.spaceGrotesk(
+                      style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
                         color: AppTheme.textPrimary,
@@ -161,7 +160,7 @@ class DashboardScreen extends StatelessWidget {
                       children: [
                         Text(
                           'Today\'s Progress',
-                          style: GoogleFonts.spaceGrotesk(
+                          style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
                             color: AppTheme.textPrimary,
@@ -170,7 +169,7 @@ class DashboardScreen extends StatelessWidget {
                         const SizedBox(height: 4),
                         Text(
                           alarm.getNextAlarmText(),
-                          style: GoogleFonts.spaceGrotesk(
+                          style: TextStyle(
                             fontSize: 12,
                             color: AppTheme.textSecondary,
                           ),
@@ -202,7 +201,7 @@ class DashboardScreen extends StatelessWidget {
                   children: [
                     Text(
                       'Today\'s Tasks',
-                      style: GoogleFonts.spaceGrotesk(
+                      style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                         color: AppTheme.textPrimary,
@@ -210,7 +209,7 @@ class DashboardScreen extends StatelessWidget {
                     ),
                     Text(
                       '${tasks.length} items',
-                      style: GoogleFonts.spaceGrotesk(
+                      style: TextStyle(
                         fontSize: 13,
                         color: AppTheme.textSecondary,
                       ),
@@ -262,7 +261,7 @@ class _StatCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             value,
-            style: GoogleFonts.spaceGrotesk(
+            style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w700,
               color: AppTheme.textPrimary,
@@ -270,7 +269,7 @@ class _StatCard extends StatelessWidget {
           ),
           Text(
             subtitle,
-            style: GoogleFonts.spaceGrotesk(
+            style: TextStyle(
               fontSize: 10,
               color: AppTheme.textSecondary,
             ),
@@ -302,7 +301,7 @@ class _EmptyTasks extends StatelessWidget {
             const SizedBox(height: 12),
             Text(
               'No tasks scheduled for today',
-              style: GoogleFonts.spaceGrotesk(
+              style: TextStyle(
                 fontSize: 14,
                 color: AppTheme.textSecondary,
               ),

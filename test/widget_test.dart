@@ -1,23 +1,16 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:schedulr/utils/app_theme.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  
-  setUpAll(() {
-    // Disable HTTP font fetching in tests
-    GoogleFonts.config.allowRuntimeFetching = false;
-  });
 
   group('AppTheme', () {
     test('has correct brand colors', () {
-      // Color values: 0xFF7C3AED → red channel = 0x7C = 124
-      expect((AppTheme.accent.value >> 16) & 0xFF, 124);
-      expect((AppTheme.bg.value >> 16) & 0xFF, 10);
-      expect((AppTheme.pomodoroWork.value >> 16) & 0xFF, 239);
-      expect((AppTheme.success.value >> 16) & 0xFF, 16);
+      expect(AppTheme.accent.red, 124);
+      expect(AppTheme.bg.red, 10);
+      expect(AppTheme.pomodoroWork.red, 239);
+      expect(AppTheme.success.red, 16);
     });
 
     test('dark theme has correct scaffold background', () {
